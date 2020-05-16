@@ -4,12 +4,48 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="ProyectoXamarin.Views.Login">
+             x:Class="ProyectoXamarin.Views.Login"
+             BackgroundImageSource="fondo.jpg">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Prueba Login"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid HorizontalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
+            
+            <StackLayout Grid.Row="1">
+                <Grid RowSpacing="0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="130"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Entry Grid.Row="0"  x:Name="entryUsuario"
+                           Placeholder="Usuario" 
+                           HorizontalOptions="FillAndExpand" TextColor="White"/>
+                    <Entry Grid.Row="1" x:Name="entryPass"
+                           Placeholder="Contraseña"
+                           HorizontalOptions="FillAndExpand" TextColor="White" />
+                    <Button Grid.Row="2" x:Name="bntLogin" 
+                            Text="Login" 
+                            HorizontalOptions="Center" VerticalOptions="EndAndExpand" HeightRequest="35" CornerRadius="20"
+                            TextColor="White"
+                            BackgroundColor="#B6B6B6" />
+                    <Label Grid.Row="3" x:Name="btnRegistrarse" 
+                           Text="Registrarse" FontSize="15" 
+                           HorizontalOptions="Center" VerticalOptions="EndAndExpand"
+                           FontAttributes="Bold"  TextColor="White"/>
+                </Grid>
+            </StackLayout>
+            <StackLayout Grid.Row="2">
+
+            </StackLayout>
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>

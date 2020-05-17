@@ -1,4 +1,5 @@
-﻿using ProyectoXamarin.ViewModels;
+﻿using ProyectoXamarin.Models;
+using ProyectoXamarin.ViewModels;
 using Syncfusion.SfCarousel.XForms;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,9 @@ using Xamarin.Forms.Xaml;
 namespace ProyectoXamarin.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Productos : ContentPage
+    public partial class ProductosView : ContentPage
     {
-        public Productos()
+        public ProductosView()
         {
             InitializeComponent();
             CarouselViewModel carouselViewModel = new CarouselViewModel();
@@ -60,7 +61,7 @@ namespace ProyectoXamarin.Views
 
                 ImageButton imagen = new ImageButton();
                 imagen.SetBinding(ImageButton.SourceProperty, "Image");
-                imagen.Clicked += Imagen_Clicked; ;
+                imagen.Clicked += Imagen_Clicked;
                 imagen.BackgroundColor = Color.Transparent;
 
                 stack.Children.Add(nombreProducto);
@@ -79,7 +80,18 @@ namespace ProyectoXamarin.Views
 
         private void Imagen_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new DetallesProducto());
+            ImageButton button = (ImageButton)sender;
+            StackLayout imt = (StackLayout)button.Parent;
+            Label nomLabel = (Label)imt.Children[0];
+            string nombre = nomLabel.Text;
+            Label descLabel = (Label)imt.Children[1];
+            string descripcion = descLabel.Text;
+
+            Productos prod = new Productos();
+            prod.Nombre = nombre;
+            prod.Descripcion = descripcion;
+
+            Navigation.PushAsync(new DetallesProductoView(prod));
         }
     }
 }

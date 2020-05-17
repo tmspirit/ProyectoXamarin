@@ -9,10 +9,10 @@ namespace ProyectoXamarin.ViewModels
     {
         public CarouselViewModel()
         {
-            ImageCollection.Add(new CarouselModel("Ferrari", "Motor fabricado por Ferrari", "https://api.ferrarinetwork.ferrari.com/v2/network-content/medias/resize/5dd560d4f8fc7b0aa906c8ca-line-up-ferrari-812-superfast-v2?apikey=9QscUiwr5n0NhOuQb463QEKghPrVlpaF&width=800&height=600"));
-            ImageCollection.Add(new CarouselModel("Ferrari", "Motor fabricado por Ferrari", "https://api.ferrarinetwork.ferrari.com/v2/network-content/medias/resize/5dd560d4f8fc7b0aa906c8ca-line-up-ferrari-812-superfast-v2?apikey=9QscUiwr5n0NhOuQb463QEKghPrVlpaF&width=800&height=600"));
-            ImageCollection.Add(new CarouselModel("Ferrari", "Motor fabricado por Ferrari", "https://api.ferrarinetwork.ferrari.com/v2/network-content/medias/resize/5dd560d4f8fc7b0aa906c8ca-line-up-ferrari-812-superfast-v2?apikey=9QscUiwr5n0NhOuQb463QEKghPrVlpaF&width=800&height=600"));
-            ImageCollection.Add(new CarouselModel("Ferrari", "Motor fabricado por Ferrari", "https://api.ferrarinetwork.ferrari.com/v2/network-content/medias/resize/5dd560d4f8fc7b0aa906c8ca-line-up-ferrari-812-superfast-v2?apikey=9QscUiwr5n0NhOuQb463QEKghPrVlpaF&width=800&height=600"));
+            ImageCollection.Add(new CarouselModel(1,"Ferrari", "Motor fabricado por Ferrari", "https://api.ferrarinetwork.ferrari.com/v2/network-content/medias/resize/5dd560d4f8fc7b0aa906c8ca-line-up-ferrari-812-superfast-v2?apikey=9QscUiwr5n0NhOuQb463QEKghPrVlpaF&width=800&height=600"));
+            ImageCollection.Add(new CarouselModel(2,"FERRARI", "Motor fabricado por Ferrari", "https://api.ferrarinetwork.ferrari.com/v2/network-content/medias/resize/5dd560d4f8fc7b0aa906c8ca-line-up-ferrari-812-superfast-v2?apikey=9QscUiwr5n0NhOuQb463QEKghPrVlpaF&width=800&height=600"));
+            ImageCollection.Add(new CarouselModel(3,"Ferrari", "Motor fabricado por Ferrari", "https://api.ferrarinetwork.ferrari.com/v2/network-content/medias/resize/5dd560d4f8fc7b0aa906c8ca-line-up-ferrari-812-superfast-v2?apikey=9QscUiwr5n0NhOuQb463QEKghPrVlpaF&width=800&height=600"));
+            ImageCollection.Add(new CarouselModel(4,"Ferrari", "Motor fabricado por Ferrari", "https://api.ferrarinetwork.ferrari.com/v2/network-content/medias/resize/5dd560d4f8fc7b0aa906c8ca-line-up-ferrari-812-superfast-v2?apikey=9QscUiwr5n0NhOuQb463QEKghPrVlpaF&width=800&height=600"));
 
         }
         private List<CarouselModel> imageCollection = new List<CarouselModel>();

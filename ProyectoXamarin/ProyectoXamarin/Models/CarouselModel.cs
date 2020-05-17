@@ -6,12 +6,20 @@ namespace ProyectoXamarin.Models
 {
     public class CarouselModel
     {
-        public CarouselModel(string nombreString, string descripcionString, string imageString)
+        public CarouselModel(int cocheId ,string nombreString, string descripcionString, string imageString)
         {
+            CocheId = cocheId;
             Nombre = nombreString;
             Descripcion = descripcionString;
             Image = imageString;
         }
+        private int _cocheId;
+        public int CocheId
+        {
+            get { return _cocheId; }
+            set { _cocheId = value; }
+        }
+
         private string _nombre;
         public string Nombre
         {

@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProyectoXamarin.Views.DetallesProductoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                FontSize="30"
+                Text="Detalles Artículo:"
+                TextColor="Blue"
+                VerticalOptions="StartAndExpand" />
+            <StackLayout Orientation="Vertical">
+                <ListView
+                    x:Name="lsvProducto"
+                    ItemsSource="{Binding productos}"
+                    RowHeight="800">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="20" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        LineBreakMode="TailTruncation"
+                                        Text="NOMBRE"
+                                        TextColor="DeepPink" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        LineBreakMode="TailTruncation"
+                                        Text="{Binding Nombre}" />
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        LineBreakMode="TailTruncation"
+                                        Text="POTENCIA"
+                                        TextColor="DeepPink" />
+                                    <Label
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        Font="Small"
+                                        LineBreakMode="TailTruncation"
+                                        Text="{Binding Potencia}"
+                                        TextColor="Gray" />
+                                    <Label
+                                        Grid.Row="4"
+                                        Grid.Column="0"
+                                        LineBreakMode="TailTruncation"
+                                        Text="CONSUMO"
+                                        TextColor="DeepPink" />
+                                    <Label
+                                        Grid.Row="5"
+                                        Grid.Column="0"
+                                        Font="Small"
+                                        LineBreakMode="TailTruncation"
+                                        Text="{Binding Consumo}"
+                                        TextColor="Gray" />
+                                    <Label
+                                        Grid.Row="6"
+                                        Grid.Column="0"
+                                        LineBreakMode="TailTruncation"
+                                        Text="DESCRIPCIÓN"
+                                        TextColor="DeepPink" />
+                                    <Label
+                                        Grid.Row="7"
+                                        Grid.Column="0"
+                                        Font="Small"
+                                        LineBreakMode="TailTruncation"
+                                        Text="{Binding Descripcion}"
+                                        TextColor="Gray" />
+                                    <Label
+                                        Grid.Row="8"
+                                        Grid.Column="0"
+                                        LineBreakMode="TailTruncation"
+                                        Text="PRECIO"
+                                        TextColor="DeepPink" />
+                                    <Label
+                                        Grid.Row="9"
+                                        Grid.Column="0"
+                                        Font="Small"
+                                        LineBreakMode="TailTruncation"
+                                        Text="{Binding Precio}"
+                                        TextColor="Gray" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout>
+                <Button
+                    x:Name="btnAñadirCarrito"
+                    BackgroundColor="DarkSlateGray"
+                    Text="Añadir al Carrito"
+                    TextColor="Orange" />
+            </StackLayout>
+            <StackLayout VerticalOptions="FillAndExpand">
+                <ScrollView Orientation="Vertical">
+                    <Editor
+                        AutoSize="TextChanges"
+                        Placeholder="Escriba aquí su comentario"
+                        PlaceholderColor="Olive"
+                        VerticalOptions="FillAndExpand">
+                        <Editor.Keyboard>
+                            <Keyboard x:FactoryMethod="Create">
+                                <x:Arguments>
+                                    <KeyboardFlags>All</KeyboardFlags>
+                                </x:Arguments>
+                            </Keyboard>
+                        </Editor.Keyboard>
+                    </Editor>
+                </ScrollView>
+                <Button
+                    x:Name="btnPostComentario"
+                    BackgroundColor="DarkSlateGray"
+                    Text="Postear Comentario"
+                    TextColor="Orange" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

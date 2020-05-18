@@ -6,18 +6,18 @@ namespace ProyectoXamarin.Models
 {
     public class CarouselModel
     {
-        public CarouselModel(int cocheId ,string nombreString, string descripcionString, string imageString)
+        public CarouselModel(int motorId ,string nombre, string descripcion, string imagen)
         {
-            CocheId = cocheId;
-            Nombre = nombreString;
-            Descripcion = descripcionString;
-            Image = imageString;
+            MotorId = motorId;
+            Nombre = nombre;
+            Descripcion = descripcion;
+            Image = imagen;
         }
-        private int _cocheId;
-        public int CocheId
+        private int _motorId;
+        public int MotorId
         {
-            get { return _cocheId; }
-            set { _cocheId = value; }
+            get { return _motorId; }
+            set { _motorId = value; }
         }
 
         private string _nombre;
@@ -39,6 +39,39 @@ namespace ProyectoXamarin.Models
         {
             get { return _image; }
             set { _image = value; }
+        }
+
+        private int _precio;
+        public int Precio
+        {
+            get { return _precio; }
+            set { _precio = value; }
+        }
+
+        private int _potencia;
+        public int Potencia
+        {
+            get { return _potencia; }
+            set { _potencia = value; }
+        }
+
+        private int _maxPar;
+        public int Max_Par
+        {
+            get { return _maxPar; }
+            set { _maxPar = value; }
+        }
+        private int _consumo;
+        public int Consumo
+        {
+            get { return _consumo; }
+            set { _consumo = value; }
+        }
+        private int _stock;
+        public int Stock
+        {
+            get { return _stock; }
+            set { _stock = value; }
         }
     }
 }

@@ -2,11 +2,6 @@
 using ProyectoXamarin.ViewModels;
 using Syncfusion.SfCarousel.XForms;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -25,7 +20,7 @@ namespace ProyectoXamarin.Views
             {
                 HeightRequest = 600,
                 WidthRequest = 800,
-                SelectedIndex = 1
+                SelectedIndex = 2
             };
 
             StackLayout stackPrincipal = new StackLayout();
@@ -47,6 +42,10 @@ namespace ProyectoXamarin.Views
                 stack.HorizontalOptions = LayoutOptions.CenterAndExpand;
                 stack.VerticalOptions = LayoutOptions.CenterAndExpand;
 
+                Label motorId = new Label();
+                motorId.SetBinding(Label.TextProperty, "MotorId");
+                motorId.IsVisible = false;
+
                 Label nombreProducto = new Label();
                 nombreProducto.SetBinding(Label.TextProperty, "Nombre");
                 nombreProducto.FontSize = 25;
@@ -64,6 +63,7 @@ namespace ProyectoXamarin.Views
                 imagen.Clicked += Imagen_Clicked;
                 imagen.BackgroundColor = Color.Transparent;
 
+                stack.Children.Add(motorId);
                 stack.Children.Add(nombreProducto);
                 stack.Children.Add(descriProducto);
                 stack.Children.Add(imagen);
@@ -81,17 +81,11 @@ namespace ProyectoXamarin.Views
         private void Imagen_Clicked(object sender, EventArgs e)
         {
             ImageButton button = (ImageButton)sender;
-            StackLayout imt = (StackLayout)button.Parent;
-            Label nomLabel = (Label)imt.Children[0];
-            string nombre = nomLabel.Text;
-            Label descLabel = (Label)imt.Children[1];
-            string descripcion = descLabel.Text;
+            StackLayout stack = (StackLayout)button.Parent;
+            Label idLabel = (Label)stack.Children[0];
+            int motorId = int.Parse(idLabel.Text);
 
-            Productos prod = new Productos();
-            prod.Nombre = nombre;
-            prod.Descripcion = descripcion;
-
-            Navigation.PushAsync(new DetallesProductoView(prod));
+            Navigation.PushAsync(new DetallesProductoView(motorId));
         }
     }
 }

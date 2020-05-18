@@ -1,4 +1,5 @@
 ﻿using ProyectoXamarin.Models;
+using ProyectoXamarin.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,11 +15,20 @@ namespace ProyectoXamarin.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetallesProductoView : ContentPage
     {
-        public DetallesProductoView(Productos prod)
+        RepositoryProductos repo;
+        private Task TaskProducto;
+        public DetallesProductoView(int motorId)
         {
             InitializeComponent();
+            this.repo = new RepositoryProductos();
+            TaskProducto = GetProductoAsync(motorId);
+        }
+
+        public async Task GetProductoAsync(int motorId)
+        {
             ObservableCollection<Productos> productos = new ObservableCollection<Productos>();
-            productos.Add(prod);
+            Productos produ = await repo.GetProducto(motorId);
+            productos.Add(produ);
             lsvProducto.ItemsSource = productos;
         }
     }

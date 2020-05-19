@@ -10,5 +10,11 @@ namespace ProyectoXamarin.Models
         public String Email { get; set; }
         public String passwd { get; set; }
 
+        public LoginModel() { }
+        public LoginModel(string Email, string passwd)
+        {
+            this.Email = Email;
+            this.passwd = passwd;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ProyectoXamarin.Models;
 using System;
 using System.Collections.Generic;
@@ -182,6 +183,42 @@ namespace ProyectoXamarin.Repositories
             List<Oferta> ofertas = await this.CallApi<List<Oferta>>(request);
             return ofertas;
         }
+        #region LOGIN
+        public async Task<String> GetToken(String email, String password)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(this.header);
+                LoginModel log = new LoginModel();
+                log.Email = email;
+                log.passwd = password;
+                String json = JsonConvert.SerializeObject(log);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                String request = "/Login/Login";
+                HttpResponseMessage response = await client.PostAsync(request, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    String data = await response.Content.ReadAsStringAsync();
+                    JObject jobject = JObject.Parse(data);
+                    String token = jobject.GetValue("response").ToString();
+                    return token;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+        public async Task<Clientes> GetPerfil(String token)
+        {
+            String request = "/api/Clientes/PerfilCliente";
+            Clientes cliente = await this.CallApi<Clientes>(request, token);
+            return cliente;
+        }
+        #endregion
+
 
     }
 }

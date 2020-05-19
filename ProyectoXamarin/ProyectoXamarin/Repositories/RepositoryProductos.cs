@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ProyectoXamarin.Models;
 using System;
 using System.Collections.Generic;
@@ -59,14 +60,6 @@ namespace ProyectoXamarin.Repositories
                     return default(T);
                 }
             }
-        }
-
-        public async Task<int> SetProducto(Productos producto, String token)
-        {
-            int result;
-            String request = "/api/Productos";
-            result = await this.CallPostApi<Productos>(request, token, producto);
-            return result;
         }
 
         private async Task<int> CallPostApi<T>(String request, String token, T item)
@@ -133,6 +126,8 @@ namespace ProyectoXamarin.Repositories
                 }
             }
         }
+
+        #region Productos
         public async Task<int> RegistrarCompra(Carrito carrito, String token)
         {
             String request = "/api/Clientes/RegistraCompra";
@@ -140,6 +135,13 @@ namespace ProyectoXamarin.Repositories
             return result;
         }
 
+        public async Task<int> SetProducto(Productos producto, String token)
+        {
+            int result;
+            String request = "/api/Productos";
+            result = await this.CallPostApi<Productos>(request, token, producto);
+            return result;
+        }
 
         public async Task<Productos> GetProducto(int idproducto)
         {
@@ -162,9 +164,14 @@ namespace ProyectoXamarin.Repositories
             return productos;
         }
 
-        public async Task<int> SetComentario(Comentario comentario, String token)
+        public async Task<int> SetComentario(int productoId, string coment, int masterCommentId, string token)
         {
-            String request = "/api/Productos/SetComentarios";
+            string request = "/api/Productos/SetComentarios";
+            Comentario comentario = new Comentario();
+            comentario.IdProducto = productoId;
+            comentario.Comment = coment;
+            comentario.FechaComentario = DateTime.Now;
+            comentario.IdMasterComment = masterCommentId;
             int response = await this.CallPostApi<Comentario>(request, token, comentario);
             return response;
         }
@@ -182,6 +189,42 @@ namespace ProyectoXamarin.Repositories
             List<Oferta> ofertas = await this.CallApi<List<Oferta>>(request);
             return ofertas;
         }
+        #endregion 
 
+        #region LOGIN
+        public async Task<String> GetToken(String email, String password)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(this.header);
+                LoginModel log = new LoginModel();
+                log.Email = email;
+                log.passwd = password;
+                String json = JsonConvert.SerializeObject(log);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                String request = "/Login/Login";
+                HttpResponseMessage response = await client.PostAsync(request, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    String data = await response.Content.ReadAsStringAsync();
+                    JObject jobject = JObject.Parse(data);
+                    String token = jobject.GetValue("response").ToString();
+                    return token;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+        public async Task<Clientes> GetPerfil(String token)
+        {
+            String request = "/api/Clientes/PerfilCliente";
+            Clientes cliente = await this.CallApi<Clientes>(request, token);
+            return cliente;
+        }
+        #endregion
     }
 }

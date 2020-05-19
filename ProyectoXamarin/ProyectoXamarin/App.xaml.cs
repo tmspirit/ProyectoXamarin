@@ -1,6 +1,5 @@
 ﻿using ProyectoXamarin.Views;
 using System;
-using System.Net.Http.Headers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,7 +11,8 @@ namespace ProyectoXamarin
         {
             InitializeComponent();
 
-            MainPage = new CarritoView();//new NavigationPage(new ProductosView());
+            MainPage = new NavigationPage(new Login());
+            //MainPage = new Login();
         }
 
         protected override void OnStart()

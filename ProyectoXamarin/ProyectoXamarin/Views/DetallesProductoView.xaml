@@ -3,9 +3,18 @@
     x:Class="ProyectoXamarin.Views.DetallesProductoView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:ProyectoXamarin.Converters"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ColoresStockConverter
+                x:Key="converterColor"
+                ColorNegativo="Green"
+                ColorPositivo="Red" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <Label
@@ -23,6 +32,17 @@
                             <ViewCell>
                                 <Grid Padding="5">
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="25" />
                                         <RowDefinition Height="20" />
                                         <RowDefinition Height="20" />
                                         <RowDefinition Height="20" />
@@ -37,19 +57,29 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Label
+                                        x:Name="lblProductoId"
+                                        FontSize="20"
+                                        IsVisible="False"
+                                        LineBreakMode="TailTruncation"
+                                        Text="{Binding Id_motor}"
+                                        TextColor="DeepPink" />
+                                    <Label
                                         Grid.Row="0"
                                         Grid.Column="0"
+                                        FontSize="20"
                                         LineBreakMode="TailTruncation"
                                         Text="NOMBRE"
                                         TextColor="DeepPink" />
                                     <Label
                                         Grid.Row="1"
                                         Grid.Column="0"
+                                        FontSize="15"
                                         LineBreakMode="TailTruncation"
                                         Text="{Binding Nombre}" />
                                     <Label
                                         Grid.Row="2"
                                         Grid.Column="0"
+                                        FontSize="20"
                                         LineBreakMode="TailTruncation"
                                         Text="POTENCIA"
                                         TextColor="DeepPink" />
@@ -57,12 +87,14 @@
                                         Grid.Row="3"
                                         Grid.Column="0"
                                         Font="Small"
+                                        FontSize="15"
                                         LineBreakMode="TailTruncation"
                                         Text="{Binding Potencia}"
                                         TextColor="Gray" />
                                     <Label
                                         Grid.Row="4"
                                         Grid.Column="0"
+                                        FontSize="20"
                                         LineBreakMode="TailTruncation"
                                         Text="CONSUMO"
                                         TextColor="DeepPink" />
@@ -70,12 +102,14 @@
                                         Grid.Row="5"
                                         Grid.Column="0"
                                         Font="Small"
+                                        FontSize="15"
                                         LineBreakMode="TailTruncation"
                                         Text="{Binding Consumo}"
                                         TextColor="Gray" />
                                     <Label
                                         Grid.Row="6"
                                         Grid.Column="0"
+                                        FontSize="20"
                                         LineBreakMode="TailTruncation"
                                         Text="DESCRIPCIÓN"
                                         TextColor="DeepPink" />
@@ -83,12 +117,14 @@
                                         Grid.Row="7"
                                         Grid.Column="0"
                                         Font="Small"
+                                        FontSize="15"
                                         LineBreakMode="TailTruncation"
                                         Text="{Binding Descripcion}"
                                         TextColor="Gray" />
                                     <Label
                                         Grid.Row="8"
                                         Grid.Column="0"
+                                        FontSize="20"
                                         LineBreakMode="TailTruncation"
                                         Text="PRECIO"
                                         TextColor="DeepPink" />
@@ -96,9 +132,24 @@
                                         Grid.Row="9"
                                         Grid.Column="0"
                                         Font="Small"
+                                        FontSize="15"
                                         LineBreakMode="TailTruncation"
                                         Text="{Binding Precio}"
                                         TextColor="Gray" />
+                                    <Label
+                                        Grid.Row="10"
+                                        Grid.Column="0"
+                                        FontSize="20"
+                                        LineBreakMode="TailTruncation"
+                                        Text="STOCK"
+                                        TextColor="DeepPink" />
+                                    <Label
+                                        Grid.Row="11"
+                                        Grid.Column="0"
+                                        FontSize="15"
+                                        LineBreakMode="TailTruncation"
+                                        Text="{Binding Stock}"
+                                        TextColor="{Binding Stock, Converter={StaticResource converterColor}}" />
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
@@ -128,11 +179,24 @@
                         </Editor.Keyboard>
                     </Editor>
                 </ScrollView>
-                <Button
-                    x:Name="btnPostComentario"
-                    BackgroundColor="DarkSlateGray"
-                    Text="Postear Comentario"
-                    TextColor="Orange" />
+                <Grid HeightRequest="100">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        x:Name="btnVerComentarios"
+                        Grid.Column="0"
+                        BackgroundColor="DarkSlateGray"
+                        Text="Ver Comentarios"
+                        TextColor="Orange" />
+                    <Button
+                        x:Name="btnPostComentario"
+                        Grid.Column="1"
+                        BackgroundColor="DarkSlateGray"
+                        Text="Postear Comentario"
+                        TextColor="Orange" />
+                </Grid>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

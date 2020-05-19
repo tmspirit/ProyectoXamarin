@@ -12,7 +12,7 @@ namespace ProyectoXamarin.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             int valor = (int)value;
-            if (valor < 0) return this.ColorPositivo;
+            if (valor <= 0) return this.ColorPositivo;
             else return this.ColorNegativo;
         }
 

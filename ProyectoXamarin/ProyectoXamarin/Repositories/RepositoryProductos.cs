@@ -62,14 +62,6 @@ namespace ProyectoXamarin.Repositories
             }
         }
 
-        public async Task<int> SetProducto(Productos producto, String token)
-        {
-            int result;
-            String request = "/api/Productos";
-            result = await this.CallPostApi<Productos>(request, token, producto);
-            return result;
-        }
-
         private async Task<int> CallPostApi<T>(String request, String token, T item)
         {
             using (HttpClient client = new HttpClient())
@@ -134,6 +126,8 @@ namespace ProyectoXamarin.Repositories
                 }
             }
         }
+
+        #region Productos
         public async Task<int> RegistrarCompra(Carrito carrito, String token)
         {
             String request = "/api/Clientes/RegistraCompra";
@@ -141,6 +135,13 @@ namespace ProyectoXamarin.Repositories
             return result;
         }
 
+        public async Task<int> SetProducto(Productos producto, String token)
+        {
+            int result;
+            String request = "/api/Productos";
+            result = await this.CallPostApi<Productos>(request, token, producto);
+            return result;
+        }
 
         public async Task<Productos> GetProducto(int idproducto)
         {
@@ -163,9 +164,14 @@ namespace ProyectoXamarin.Repositories
             return productos;
         }
 
-        public async Task<int> SetComentario(Comentario comentario, String token)
+        public async Task<int> SetComentario(int productoId, string coment, int masterCommentId, string token)
         {
-            String request = "/api/Productos/SetComentarios";
+            string request = "/api/Productos/SetComentarios";
+            Comentario comentario = new Comentario();
+            comentario.IdProducto = productoId;
+            comentario.Comment = coment;
+            comentario.FechaComentario = DateTime.Now;
+            comentario.IdMasterComment = masterCommentId;
             int response = await this.CallPostApi<Comentario>(request, token, comentario);
             return response;
         }
@@ -183,6 +189,8 @@ namespace ProyectoXamarin.Repositories
             List<Oferta> ofertas = await this.CallApi<List<Oferta>>(request);
             return ofertas;
         }
+        #endregion 
+
         #region LOGIN
         public async Task<String> GetToken(String email, String password)
         {
@@ -218,7 +226,5 @@ namespace ProyectoXamarin.Repositories
             return cliente;
         }
         #endregion
-
-
     }
 }

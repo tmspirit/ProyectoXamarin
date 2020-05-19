@@ -26,9 +26,14 @@ namespace ProyectoXamarin.Views
             btnPostComentario.Clicked += BtnPostComentario_Clicked;
         }
 
-        private void BtnPostComentario_Clicked(object sender, EventArgs e)
+        private async void BtnPostComentario_Clicked(object sender, EventArgs e)
         {
-            //throw new NotImplementedException();
+            int productoId = lsvProducto.ItemsSource.Cast<Productos>().Select(x => x.Id_motor).FirstOrDefault();
+            string token = Application.Current.Properties["Token"].ToString();
+            string texto = txtComentario.Text;
+            int masterIdCommment = 0;
+            await repo.SetComentario(productoId, texto, masterIdCommment, token);
+            txtComentario.Text = string.Empty;
         }
 
         private void BtnVerComentarios_Clicked(object sender, EventArgs e)

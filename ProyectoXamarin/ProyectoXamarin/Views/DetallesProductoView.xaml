@@ -166,6 +166,7 @@
             <StackLayout VerticalOptions="FillAndExpand">
                 <ScrollView Orientation="Vertical">
                     <Editor
+                        x:Name="txtComentario"
                         AutoSize="TextChanges"
                         Placeholder="Escriba aquí su comentario"
                         PlaceholderColor="Olive"

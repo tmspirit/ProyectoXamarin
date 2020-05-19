@@ -40,5 +40,38 @@ namespace ProyectoXamarin.Models
             get { return _image; }
             set { _image = value; }
         }
+
+        private int _precio;
+        public int Precio
+        {
+            get { return _precio; }
+            set { _precio = value; }
+        }
+
+        private int _potencia;
+        public int Potencia
+        {
+            get { return _potencia; }
+            set { _potencia = value; }
+        }
+
+        private int _maxPar;
+        public int Max_Par
+        {
+            get { return _maxPar; }
+            set { _maxPar = value; }
+        }
+        private int _consumo;
+        public int Consumo
+        {
+            get { return _consumo; }
+            set { _consumo = value; }
+        }
+        private int _stock;
+        public int Stock
+        {
+            get { return _stock; }
+            set { _stock = value; }
+        }
     }
 }

@@ -22,26 +22,6 @@ namespace ProyectoXamarin.Views
             InitializeComponent();
             this.repo = new RepositoryProductos();
             TaskProducto = GetProductoAsync(motorId);
-            btnVerComentarios.Clicked += BtnVerComentarios_Clicked;
-            btnPostComentario.Clicked += BtnPostComentario_Clicked;
-        }
-
-        private void BtnVerComentarios_Clicked(object sender, EventArgs e)
-        {
-            int productoId = lsvProducto.ItemsSource.Cast<Productos>().Select(x => x.Id_motor).FirstOrDefault();
-            if (productoId != 0)
-            {
-                Navigation.PushAsync(new ComentariosView(productoId));
-            }
-            else DisplayAlert("Lo sentimos", "No hay comentarios para este producto", "Volver");
-        }
-
-        private async void BtnPostComentario_Clicked(object sender, EventArgs e)
-        {
-            if (txtComentario.Text != null)
-            {
-
-            }
         }
 
         public async Task GetProductoAsync(int motorId)

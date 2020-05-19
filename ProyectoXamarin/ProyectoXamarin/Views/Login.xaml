@@ -27,15 +27,15 @@
                     </Grid.ColumnDefinitions>
                     <Entry Grid.Row="0"  x:Name="entryUsuario"
                            Placeholder="Usuario" 
-                           HorizontalOptions="FillAndExpand" TextColor="White"/>
+                           HorizontalOptions="FillAndExpand" TextColor="White" BackgroundColor="Gray"/>
                     <Entry Grid.Row="1" x:Name="entryPass"
                            Placeholder="Contraseña"
-                           HorizontalOptions="FillAndExpand" TextColor="White" />
+                           HorizontalOptions="FillAndExpand" TextColor="White" BackgroundColor="Red"/>
                     <Button Grid.Row="2" x:Name="bntLogin" 
                             Text="Login" 
                             HorizontalOptions="Center" VerticalOptions="EndAndExpand" HeightRequest="35" CornerRadius="20"
                             TextColor="White"
-                            BackgroundColor="#B6B6B6" />
+                            BackgroundColor="#B6B6B6"/>
                     <Label Grid.Row="3" x:Name="btnRegistrarse" 
                            Text="Registrarse" FontSize="15" 
                            HorizontalOptions="Center" VerticalOptions="EndAndExpand"

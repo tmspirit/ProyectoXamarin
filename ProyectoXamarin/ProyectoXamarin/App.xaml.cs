@@ -11,12 +11,12 @@ namespace ProyectoXamarin
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Login());
-            //MainPage = new Login();
+            MainPage = new NavigationPage(new ProductosView());
         }
 
         protected override void OnStart()
         {
+            Application.Current.Properties.Add("Token", "");
         }
 
         protected override void OnSleep()

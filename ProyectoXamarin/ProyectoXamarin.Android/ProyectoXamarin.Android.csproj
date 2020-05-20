@@ -104,7 +104,7 @@
     <AndroidResource Include="Resources\drawable\fordcoyote.wdp.jxr" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\2jz.jpg" />
+    <AndroidResource Include="Resources\drawable\jz.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Windsor302Blue.jpg" />

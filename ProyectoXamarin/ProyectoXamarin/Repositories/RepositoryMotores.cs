@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace ProyectoXamarin.Repositories
 {
-    public class RepositoryProductos
+    public class RepositoryMotores
     {
         private String url;
         private MediaTypeWithQualityHeaderValue header;
-        public RepositoryProductos()
+        public RepositoryMotores()
         {
             this.url = "https://apicrudmotoresier.azurewebsites.net";
             //this.url = "https://localhost:44352/";
@@ -176,9 +176,9 @@ namespace ProyectoXamarin.Repositories
             return response;
         }
 
-        public async Task<List<Comentario>> GetComentarios(String idproducto)
+        public async Task<List<Comentario>> GetComentarios(int productoId)
         {
-            String request = "/api/GetComentarios/" + idproducto;
+            String request = "/api/Productos/GetComentarios/" + productoId;
             List<Comentario> comentarios = await this.CallApi<List<Comentario>>(request);
             return comentarios;
         }
@@ -191,7 +191,14 @@ namespace ProyectoXamarin.Repositories
         }
         #endregion 
 
-        #region LOGIN
+        #region Cliente
+        public async Task<Clientes> FindCliente(int codcli, string token)
+        {
+            String request = "/api/Clientes/BuscarCliente/" + codcli;
+            Clientes cliente = await this.CallApi<Clientes>(request, token);
+            return cliente;
+        }
+
         public async Task<String> GetToken(String email, String password)
         {
             using (HttpClient client = new HttpClient())
@@ -224,6 +231,79 @@ namespace ProyectoXamarin.Repositories
             String request = "/api/Clientes/PerfilCliente";
             Clientes cliente = await this.CallApi<Clientes>(request, token);
             return cliente;
+        }
+
+        public async Task<int> ChangePasswd(ChangePasswdModel changePasswd, String token)
+        {
+            String request = "/api/Clientes/ModificarContraseña";
+            int result = await this.CallPutApi<ChangePasswdModel>(request, token, changePasswd);
+            return result;
+        }
+
+        public async Task<int> RegistrarCliente(Clientes cliente)
+        {
+            String request = "/api/Clientes/RegistrarCliente";
+            int result = await this.CallPostApi<Clientes>(request, cliente);
+            return result;
+        }
+
+        public async Task<List<Clientes>> GetClientes(String token)
+        {
+            String request = "/api/Clientes/GetClientes";
+            List<Clientes> clientes = await this.CallApi<List<Clientes>>(request, token);
+            return clientes;
+        }
+
+        //PUDE HABER USADO EL METODO GENERICO CallPostApi PERO BUENO..
+        public async Task<int> SubirImagen(string imagencliente, string token)
+        {
+            String request = "/api/Clientes/ModificarImagenCliente/" + imagencliente;
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(this.url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(this.header);
+                client.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
+                String json = JsonConvert.SerializeObject(imagencliente);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PutAsync(request, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+        }
+
+        public async Task<List<Pedidos>> VerMisPedidos(string token)
+        {
+            String request = "/api/Clientes/VerMisPedidos";
+            List<Pedidos> pedidos = await this.CallApi<List<Pedidos>>(request, token);
+            return pedidos;
+        }
+
+        public async Task<int> CancelarPedido(int idpedido, String token)
+        {
+            String request = "/api/Clientes/CancelarPedido/" + idpedido;
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(this.url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(this.header);
+                client.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
+                HttpResponseMessage response = await client.DeleteAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
         }
         #endregion
     }

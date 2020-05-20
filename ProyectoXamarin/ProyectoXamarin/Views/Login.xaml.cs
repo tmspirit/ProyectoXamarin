@@ -15,11 +15,11 @@ namespace ProyectoXamarin.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Login : ContentPage
     {
-        RepositoryProductos repo;
+        RepositoryMotores repo;
         public Login()
         {
             InitializeComponent();
-            this.repo = new RepositoryProductos();
+            this.repo = new RepositoryMotores();
             this.bntLogin.Clicked += BntLogin_Clicked;
         }
 

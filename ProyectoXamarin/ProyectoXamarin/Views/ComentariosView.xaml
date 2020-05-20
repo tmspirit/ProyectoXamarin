@@ -11,7 +11,12 @@
             <Label
                 HorizontalOptions="CenterAndExpand"
                 Text="Página de comentarios!"
-                VerticalOptions="CenterAndExpand" />
+                VerticalOptions="Start" />
+            <StackLayout>
+                <Label x:Name="lblNombre" />
+                <Label x:Name="lblComentario" />
+                <Image x:Name="imgImgenCliente" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

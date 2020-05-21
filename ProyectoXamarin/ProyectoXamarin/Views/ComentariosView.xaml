@@ -12,7 +12,7 @@
                 HorizontalOptions="CenterAndExpand"
                 Text="Página de comentarios!"
                 VerticalOptions="Start" />
-            <StackLayout>
+            <StackLayout Orientation="Vertical">
                 <Label x:Name="lblNombre" />
                 <Label x:Name="lblComentario" />
                 <Image x:Name="imgImgenCliente" />

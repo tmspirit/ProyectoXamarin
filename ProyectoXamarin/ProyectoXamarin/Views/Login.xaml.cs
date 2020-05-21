@@ -38,7 +38,8 @@ namespace ProyectoXamarin.Views
                 //Guardo token
                 Application.Current.Properties["Token"] = token;
                 //Redirijo a Productos
-                await Navigation.PushAsync(new ProductosView());
+                //Navigation.PushAsync(new ProductosView());
+                Navigation.PushModalAsync(new ProductosView());
             }
             else
             {

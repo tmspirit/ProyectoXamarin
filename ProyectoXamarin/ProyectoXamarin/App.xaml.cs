@@ -11,7 +11,7 @@ namespace ProyectoXamarin
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Login());
+            MainPage = new NavigationPage(new ProductosView());
             //MainPage = new Login();
         }
 

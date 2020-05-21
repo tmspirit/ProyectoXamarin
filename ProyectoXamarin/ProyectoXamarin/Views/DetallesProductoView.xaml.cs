@@ -15,13 +15,46 @@ namespace ProyectoXamarin.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetallesProductoView : ContentPage
     {
-        RepositoryProductos repo;
+        RepositoryMotores repo;
         private Task TaskProducto;
         public DetallesProductoView(int motorId)
         {
             InitializeComponent();
-            this.repo = new RepositoryProductos();
+            this.repo = new RepositoryMotores();
             TaskProducto = GetProductoAsync(motorId);
+            btnVerComentarios.Clicked += BtnVerComentarios_Clicked;
+            btnPostComentario.Clicked += BtnPostComentario_Clicked;
+        }
+
+        private async void BtnPostComentario_Clicked(object sender, EventArgs e)
+        {
+            string token = Application.Current.Properties["Token"].ToString();
+            if (token != "")
+            {
+                int productoId = lsvProducto.ItemsSource.Cast<Productos>().Select(x => x.Id_motor).FirstOrDefault();
+                string texto = txtComentario.Text;
+                int masterIdCommment = 0;
+                if (texto != null)
+                {
+                    await repo.SetComentario(productoId, texto, masterIdCommment, token);
+                    txtComentario.Text = string.Empty;
+                }
+                else await DisplayAlert("Error", "Por favor escriba un comentario para postear", "Cancel");
+            }
+            else await Navigation.PushAsync(new Login());
+            
+        }
+
+        private async void BtnVerComentarios_Clicked(object sender, EventArgs e)
+        {
+            string token = Application.Current.Properties["Token"].ToString();
+            if (token != "")
+            {
+                int productoId = lsvProducto.ItemsSource.Cast<Productos>().Select(x => x.Id_motor).FirstOrDefault();
+                if (productoId != 0) await Navigation.PushAsync(new ComentariosView(productoId));
+                else await DisplayAlert("Lo sentimos", "No hay comentarios disponibles para ese producto", "Volver");
+            }
+            else await Navigation.PushAsync(new Login());
         }
 
         public async Task GetProductoAsync(int motorId)

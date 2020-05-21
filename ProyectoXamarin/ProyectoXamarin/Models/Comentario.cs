@@ -20,5 +20,7 @@ namespace ProyectoXamarin.Models
         public DateTime FechaComentario { get; set; }
         [JsonProperty("idmastercomment")]
         public int IdMasterComment;
+
+        public virtual Clientes Clientes { get; set; }
     }
 }

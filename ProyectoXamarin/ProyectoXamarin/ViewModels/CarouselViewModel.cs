@@ -12,9 +12,9 @@ namespace ProyectoXamarin.ViewModels
     {
         RepositoryMotores repo;
         private Task TaskProductos;
-        public CarouselViewModel()
+        public CarouselViewModel(RepositoryMotores repo)
         {
-            this.repo = new RepositoryMotores();
+            this.repo = repo;
             TaskProductos = GetProductosAsync();
         }
         private ObservableCollection<CarouselModel> _imageCollection = new ObservableCollection<CarouselModel>();

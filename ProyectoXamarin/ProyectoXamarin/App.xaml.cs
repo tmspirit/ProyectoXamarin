@@ -1,12 +1,17 @@
-﻿using ProyectoXamarin.Views;
+﻿using ProyectoXamarin.Services;
+using ProyectoXamarin.Views;
 using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ProyectoXamarin
 {
     public partial class App : Application
     {
+        private static ServiceDependency _locator;
+        public static ServiceDependency Locator
+        {
+            get { return _locator = _locator ?? new ServiceDependency(); }
+        }
         public App()
         {
             InitializeComponent();
@@ -16,7 +21,7 @@ namespace ProyectoXamarin
 
         protected override void OnStart()
         {
-            Application.Current.Properties.Add("Token", "");
+            Application.Current.Properties["Token"] = String.Empty;
         }
 
         protected override void OnSleep()

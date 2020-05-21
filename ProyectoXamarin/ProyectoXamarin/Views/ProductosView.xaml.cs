@@ -14,8 +14,8 @@ namespace ProyectoXamarin.Views
         public ProductosView()
         {
             InitializeComponent();
-            CarouselViewModel carouselViewModel = new CarouselViewModel();
-
+            CarouselViewModel carouselViewModel = App.Locator.CarouselViewModel;
+            
             SfCarousel carousel = new SfCarousel()
             {
                 HeightRequest = 600,

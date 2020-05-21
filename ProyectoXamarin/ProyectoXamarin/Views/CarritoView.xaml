@@ -7,7 +7,7 @@
              xmlns:viewmodels="clr-namespace:ProyectoXamarin.ViewModels"
              x:Class="ProyectoXamarin.Views.CarritoView">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="Gray">
             <StackLayout.BindingContext>
                 <viewmodels:CarritoViewModel/>
             </StackLayout.BindingContext>
@@ -15,16 +15,28 @@
                 VerticalOptions="Start"
                    FontSize="20"
                 HorizontalOptions="CenterAndExpand" />
-            <ListView RowHeight="80" ItemsSource="{Binding Carrito.Productos}">
-                <!--<ListView.ItemTemplate>
+            <ListView RowHeight="80" ItemsSource="{Binding TareaProductos.Result}">
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Productos}"/>
+                            <StackLayout Orientation="Horizontal" >
+                                <Label Text="{Binding Nombre}" 
+                                       VerticalOptions="Center"
+                                       FontSize="20" 
+                                       FontAttributes="Bold"
+                                       TextColor="OrangeRed"
+                                       />
+                                <StackLayout HorizontalOptions="EndAndExpand"
+                                             VerticalOptions="End">
+                                    <Label 
+                                        FontSize="20"
+                                        TextColor="Black"
+                                        Text="{Binding Precio}"/>
+                                </StackLayout>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
-                </ListView.ItemTemplate>-->
+                </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
     </ContentPage.Content>

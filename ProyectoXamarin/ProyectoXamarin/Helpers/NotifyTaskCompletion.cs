@@ -13,6 +13,7 @@ namespace ProyectoXamarin.Helpers
             Task = task;
             if (!task.IsCompleted)
             {
+
                 var _ = WatchTaskAsync(task);
             }
         }

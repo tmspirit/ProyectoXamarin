@@ -38,6 +38,7 @@ namespace ProyectoXamarin.ViewModels
         public CarritoViewModel() {
             this.repo = new RepositoryMotores();
             this._Carrito = GenerarCarrito();
+
             this._TareaProductos = 
                 new NotifyTaskCompletion<ObservableCollection<Productos>>(CargarProductos(this._Carrito.Productos));
         }

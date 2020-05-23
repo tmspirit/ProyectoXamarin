@@ -4,19 +4,45 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:ProyectoXamarin"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms"
+    BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ComentariosViewModel}"
     mc:Ignorable="d">
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Página de comentarios!"
-                VerticalOptions="Start" />
-            <StackLayout Orientation="Vertical">
-                <Label x:Name="lblNombre" />
-                <Label x:Name="lblComentario" />
-                <Image x:Name="imgImgenCliente" />
-            </StackLayout>
-        </StackLayout>
+        <syncfusion:SfAccordion BindableLayout.ItemsSource="{Binding Comentarios}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <syncfusion:AccordionItem>
+                        <syncfusion:AccordionItem.Header>
+                            <Grid>
+                                <Label
+                                    FontSize="20"
+                                    HeightRequest="50"
+                                    TextColor="#495F6E"
+                                    VerticalTextAlignment="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Clientes.Nombre}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding FechaComentario,}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Grid>
+                        </syncfusion:AccordionItem.Header>
+                        <syncfusion:AccordionItem.Content>
+                            <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
+                                <Label
+                                    HeightRequest="100"
+                                    Text="{Binding Comment}"
+                                    TextColor="#303030"
+                                    VerticalTextAlignment="Center" />
+                            </Grid>
+                        </syncfusion:AccordionItem.Content>
+                    </syncfusion:AccordionItem>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </syncfusion:SfAccordion>
     </ContentPage.Content>
 </ContentPage>

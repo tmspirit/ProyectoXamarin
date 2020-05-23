@@ -1,5 +1,6 @@
 ﻿using ProyectoXamarin.Models;
 using ProyectoXamarin.Repositories;
+using ProyectoXamarin.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -51,7 +52,14 @@ namespace ProyectoXamarin.Views
             if (token != "")
             {
                 int productoId = lsvProducto.ItemsSource.Cast<Productos>().Select(x => x.Id_motor).FirstOrDefault();
-                if (productoId != 0) await Navigation.PushModalAsync(new ComentariosView(productoId));
+                if (productoId != 0)
+                {
+                    ComentariosViewModel viewmodel = App.Locator.ComentariosViewModel;
+                    viewmodel.ProductoID = productoId;
+                    ComentariosView view = new ComentariosView();
+                    view.BindingContext = viewmodel;
+                    await Navigation.PushModalAsync(view);
+                }
                 else await DisplayAlert("Lo sentimos", "No hay comentarios disponibles para ese producto", "Volver");
             }
             else await Navigation.PushAsync(new Login());

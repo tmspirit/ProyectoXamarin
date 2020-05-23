@@ -16,7 +16,7 @@ namespace ProyectoXamarin
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new CarritoView());
+            MainPage = new NavigationPage(new ProductosView());
         }
 
         protected override void OnStart()

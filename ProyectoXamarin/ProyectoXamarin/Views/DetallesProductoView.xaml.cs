@@ -2,10 +2,8 @@
 using ProyectoXamarin.Repositories;
 using ProyectoXamarin.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -17,12 +15,11 @@ namespace ProyectoXamarin.Views
     public partial class DetallesProductoView : ContentPage
     {
         RepositoryMotores repo;
-        private Task TaskProducto;
         public DetallesProductoView(int motorId)
         {
             InitializeComponent();
             this.repo = new RepositoryMotores();
-            TaskProducto = GetProductoAsync(motorId);
+            Task.Run(() => GetProductoAsync(motorId));
             btnVerComentarios.Clicked += BtnVerComentarios_Clicked;
             btnPostComentario.Clicked += BtnPostComentario_Clicked;
         }
@@ -58,7 +55,7 @@ namespace ProyectoXamarin.Views
                     viewmodel.ProductoID = productoId;
                     ComentariosView view = new ComentariosView();
                     view.BindingContext = viewmodel;
-                    await Navigation.PushModalAsync(view);
+                    await Navigation.PushAsync(view);
                 }
                 else await DisplayAlert("Lo sentimos", "No hay comentarios disponibles para ese producto", "Volver");
             }

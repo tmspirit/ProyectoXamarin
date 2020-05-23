@@ -1,5 +1,4 @@
-﻿using ProyectoXamarin.Models;
-using ProyectoXamarin.ViewModels;
+﻿using ProyectoXamarin.ViewModels;
 using Syncfusion.SfCarousel.XForms;
 using System;
 

@@ -1,10 +1,8 @@
 ﻿using ProyectoXamarin.Base;
 using ProyectoXamarin.Models;
 using ProyectoXamarin.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -38,12 +36,17 @@ namespace ProyectoXamarin.ViewModels
             string token = Application.Current.Properties["Token"].ToString();
             if (token != "")
             {
-                List<Comentario> comentarios = await repo.GetComentarios(ProductoID);
-                foreach (Comentario c in comentarios)
+                List<Comentario> comentarios = new List<Comentario>();
+                do
                 {
-                    Clientes cliente = await repo.FindCliente(c.IdCliente, token);
-                    c.Clientes = cliente;
-                }
+                    comentarios = await repo.GetComentarios(ProductoID);
+                    foreach (Comentario c in comentarios)
+                    {
+                        Clientes cliente = await repo.FindCliente(c.IdCliente, token);
+                        c.Clientes = cliente;
+                    }
+                } while (comentarios.Count <= 0);
+                
                 Comentarios = new ObservableCollection<Comentario>(comentarios);
             }
         }

@@ -15,11 +15,10 @@ namespace ProyectoXamarin.Views
     public partial class DetallesProductoView : ContentPage
     {
         RepositoryMotores repo;
-        public DetallesProductoView(int motorId)
+        public DetallesProductoView()
         {
             InitializeComponent();
             this.repo = new RepositoryMotores();
-            Task.Run(() => GetProductoAsync(motorId));
             btnVerComentarios.Clicked += BtnVerComentarios_Clicked;
             btnPostComentario.Clicked += BtnPostComentario_Clicked;
         }
@@ -49,7 +48,7 @@ namespace ProyectoXamarin.Views
             if (token != "")
             {
                 int productoId = lsvProducto.ItemsSource.Cast<Productos>().Select(x => x.Id_motor).FirstOrDefault();
-                if (productoId != 0)
+                if (productoId > 0)
                 {
                     ComentariosViewModel viewmodel = App.Locator.ComentariosViewModel;
                     viewmodel.ProductoID = productoId;
@@ -62,12 +61,10 @@ namespace ProyectoXamarin.Views
             else await Navigation.PushAsync(new Login());
         }
 
-        public async Task GetProductoAsync(int motorId)
+        protected override async void OnAppearing()
         {
-            ObservableCollection<Productos> productos = new ObservableCollection<Productos>();
-            Productos produ = await repo.GetProducto(motorId);
-            productos.Add(produ);
-            lsvProducto.ItemsSource = productos;
+            DetallesProductoViewModel viewModel = (DetallesProductoViewModel)this.BindingContext;
+            viewModel.Productos = await viewModel.GetProductoAsync();
         }
     }
 }

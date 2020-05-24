@@ -5,14 +5,15 @@ using Xamarin.Forms;
 
 namespace ProyectoXamarin.Converters
 {
-    public class SpanishDateConverter : IValueConverter
+    public class CountryDateConverter : IValueConverter
     {
-        public string SpanishFormat { get; set; }
+        public string DateFormat { get; set; }
+        public string CultereCountry { get; set; }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             DateTime objdate = (DateTime)value;
-            string formatDate = objdate.ToString(SpanishFormat, new CultureInfo("es-ES"));
+            string formatDate = objdate.ToString(DateFormat, new CultureInfo(CultereCountry));
             return formatDate;
         }
 

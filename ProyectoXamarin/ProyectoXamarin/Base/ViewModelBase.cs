@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using ProyectoXamarin.ViewModels;
+using System.ComponentModel;
 
 namespace ProyectoXamarin.Base
 {

@@ -19,12 +19,17 @@ namespace ProyectoXamarin.Services
 
             builder.RegisterType<CarouselViewModel>();
             builder.RegisterType<ComentariosViewModel>();
+            builder.RegisterType<DetallesProductoViewModel>();
             container = builder.Build();
         }
 
         public CarouselViewModel CarouselViewModel
         {
             get { return this.container.Resolve<CarouselViewModel>(); }
+        }
+        public DetallesProductoViewModel DetallesProductoViewModel
+        {
+            get { return this.container.Resolve<DetallesProductoViewModel>(); }
         }
         public ComentariosViewModel ComentariosViewModel
         {

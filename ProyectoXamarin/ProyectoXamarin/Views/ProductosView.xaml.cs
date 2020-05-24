@@ -77,14 +77,18 @@ namespace ProyectoXamarin.Views
             this.Content = stackPrincipal;
         }
 
-        private void Imagen_Clicked(object sender, EventArgs e)
+        private async void Imagen_Clicked(object sender, EventArgs e)
         {
             ImageButton button = (ImageButton)sender;
             StackLayout stack = (StackLayout)button.Parent;
             Label idLabel = (Label)stack.Children[0];
             int motorId = int.Parse(idLabel.Text);
 
-            Navigation.PushAsync(new DetallesProductoView(motorId));
+            DetallesProductoViewModel viewModel = App.Locator.DetallesProductoViewModel;
+            viewModel.MotorID = motorId;
+            DetallesProductoView view = new DetallesProductoView();
+            view.BindingContext = viewModel;
+            await Navigation.PushAsync(view);
         }
     }
 }

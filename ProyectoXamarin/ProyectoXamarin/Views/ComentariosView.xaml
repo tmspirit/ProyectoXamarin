@@ -12,7 +12,10 @@
     mc:Ignorable="d">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:SpanishDateConverter x:Key="converterDate" SpanishFormat="D" />
+            <converters:CountryDateConverter
+                x:Key="converterDate"
+                CultereCountry="es-ES"
+                DateFormat="D" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>

@@ -20,6 +20,12 @@ namespace ProyectoXamarin.Views
             InitializeComponent();
             this.repo = new RepositoryMotores();
             this.bntCreate.Clicked += BntCreate_Clicked;
+            this.bntBack.Clicked += BntBack_Clicked;
+        }
+
+        private async void BntBack_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Login());
         }
 
         private async void BntCreate_Clicked(object sender, EventArgs e)
@@ -31,8 +37,14 @@ namespace ProyectoXamarin.Views
             cliente.Telefono = Double.Parse(this.entryTelefono.Text) ;
             cliente.Password = this.entryPass.Text;
 
-            await repo.RegistrarCliente(cliente);
-            throw new NotImplementedException();
+            int res= await repo.RegistrarCliente(cliente);
+            if (res == 0) {
+                await Navigation.PushAsync(new ProductosView());
+            }
+            else
+            {
+                //error
+            }
         }
     }
 }

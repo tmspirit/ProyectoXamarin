@@ -5,13 +5,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:viewmodels="clr-namespace:ProyectoXamarin.ViewModels"
-             x:Class="ProyectoXamarin.Views.CarritoView">
+             x:Class="ProyectoXamarin.Views.CarritoView"
+             Title="MiCarrito">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout.BindingContext>
                 <viewmodels:CarritoViewModel/>
             </StackLayout.BindingContext>
-            <Label Text="Vieeeeeeeeeeejiuuuuuuu"
+            <Label Text="VVISTA CARRITO"
                 VerticalOptions="Start"
                    FontSize="20"
                 HorizontalOptions="CenterAndExpand" />

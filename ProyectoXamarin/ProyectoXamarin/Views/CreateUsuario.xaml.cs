@@ -39,6 +39,8 @@ namespace ProyectoXamarin.Views
 
             int res= await repo.RegistrarCliente(cliente);
             if (res == 0) {
+                String token = await repo.GetToken(cliente.Nombre, this.entryPass.Text);
+                Application.Current.Properties["Token"] = token;
                 await Navigation.PushAsync(new ProductosView());
             }
             else

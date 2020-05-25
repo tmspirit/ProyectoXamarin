@@ -21,12 +21,24 @@ namespace ProyectoXamarin.Views
             InitializeComponent();
             this.repo = new RepositoryMotores();
             this.bntLogin.Clicked += BntLogin_Clicked;
+            this.bntContinuar.Clicked += BntContinuar_Clicked;
+            this.btnRegistrarse.GestureRecognizers.Add(
+                new TapGestureRecognizer()
+                {
+                    Command = new Command(() => {
+                        Navigation.PushAsync(new CreateUsuario());
+                    })
+                }
+            );
+        }
+        private void BntContinuar_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ProductosView());
         }
 
         private async void BntLogin_Clicked(object sender, EventArgs e)
         {
             //        CLIENTE:
-
             //        EMAIL: dionisio@dionisio.6
             //        PASSWORD: erdioniguay / o si no dionisio
 
@@ -45,8 +57,7 @@ namespace ProyectoXamarin.Views
             {
                 //Mensaje pass Incorrecta
 
-            }
-            
+            }     
         }
     }
 }

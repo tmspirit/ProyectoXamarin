@@ -1,10 +1,9 @@
 ﻿using ProyectoXamarin.Models;
 using ProyectoXamarin.Repositories;
+using ProyectoXamarin.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -16,12 +15,10 @@ namespace ProyectoXamarin.Views
     public partial class DetallesProductoView : ContentPage
     {
         RepositoryMotores repo;
-        private Task TaskProducto;
-        public DetallesProductoView(int motorId)
+        public DetallesProductoView()
         {
             InitializeComponent();
             this.repo = new RepositoryMotores();
-            TaskProducto = GetProductoAsync(motorId);
             btnVerComentarios.Clicked += BtnVerComentarios_Clicked;
             btnPostComentario.Clicked += BtnPostComentario_Clicked;
         }
@@ -51,18 +48,23 @@ namespace ProyectoXamarin.Views
             if (token != "")
             {
                 int productoId = lsvProducto.ItemsSource.Cast<Productos>().Select(x => x.Id_motor).FirstOrDefault();
-                if (productoId != 0) await Navigation.PushAsync(new ComentariosView(productoId));
+                if (productoId > 0)
+                {
+                    ComentariosViewModel viewmodel = App.Locator.ComentariosViewModel;
+                    viewmodel.ProductoID = productoId;
+                    ComentariosView view = new ComentariosView();
+                    view.BindingContext = viewmodel;
+                    await Navigation.PushAsync(view);
+                }
                 else await DisplayAlert("Lo sentimos", "No hay comentarios disponibles para ese producto", "Volver");
             }
             else await Navigation.PushAsync(new Login());
         }
 
-        public async Task GetProductoAsync(int motorId)
+        protected override async void OnAppearing()
         {
-            ObservableCollection<Productos> productos = new ObservableCollection<Productos>();
-            Productos produ = await repo.GetProducto(motorId);
-            productos.Add(produ);
-            lsvProducto.ItemsSource = productos;
+            DetallesProductoViewModel viewModel = (DetallesProductoViewModel)this.BindingContext;
+            viewModel.Productos = await viewModel.GetProductoAsync();
         }
     }
 }

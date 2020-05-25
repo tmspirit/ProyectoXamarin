@@ -5,9 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:ProyectoXamarin.Converters"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:local="clr-namespace:ProyectoXamarin"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    BindingContext="{Binding Source={x:Static local:App.Locator}, Path=DetallesProductoViewModel}"
     mc:Ignorable="d">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -27,7 +25,7 @@
             <StackLayout Orientation="Vertical">
                 <ListView
                     x:Name="lsvProducto"
-                    ItemsSource="{Binding Productos}"
+                    ItemsSource="{Binding productos}"
                     RowHeight="800">
                     <ListView.ItemTemplate>
                         <DataTemplate>

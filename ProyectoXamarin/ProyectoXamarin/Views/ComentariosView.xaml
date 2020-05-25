@@ -7,7 +7,14 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:local="clr-namespace:ProyectoXamarin"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms"
+    BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ComentariosViewModel}"
     mc:Ignorable="d">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:SpanishDateConverter x:Key="converterDate" SpanishFormat="D" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <syncfusion:SfAccordion BindableLayout.ItemsSource="{Binding Comentarios}" ExpandMode="SingleOrNone">
             <BindableLayout.ItemTemplate>

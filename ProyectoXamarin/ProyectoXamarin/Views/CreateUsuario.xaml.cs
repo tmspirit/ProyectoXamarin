@@ -32,7 +32,7 @@ namespace ProyectoXamarin.Views
         {
             Clientes cliente = new Clientes();
             cliente.Nombre = this.entryNombre.Text;
-            cliente.Contacto = this.entryCiudad.Text;
+            cliente.Contacto = this.entryContacto.Text;
             cliente.Ciudad = this.entryCiudad.Text;
             cliente.Telefono = Double.Parse(this.entryTelefono.Text) ;
             cliente.Password = this.entryPass.Text;

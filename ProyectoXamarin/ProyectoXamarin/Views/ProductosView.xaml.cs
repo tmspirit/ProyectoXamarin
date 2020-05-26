@@ -27,7 +27,7 @@ namespace ProyectoXamarin.Views
             Label titulo = new Label
             {
                 Text = "Articulos Disponibles:",
-                TextColor = Color.Blue,
+                TextColor = Color.CadetBlue,
                 FontSize = 30,
                 FontAttributes = FontAttributes.Bold,
                 HorizontalOptions = LayoutOptions.StartAndExpand,

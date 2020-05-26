@@ -22,7 +22,7 @@
             <Label
                 FontSize="30"
                 Text="Detalles Artículo:"
-                TextColor="Blue"
+                TextColor="CadetBlue"
                 VerticalOptions="StartAndExpand" />
             <StackLayout Orientation="Vertical">
                 <ListView

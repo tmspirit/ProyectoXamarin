@@ -160,10 +160,9 @@
                 <Button
                     x:Name="btnAñadirCarrito"
                     BackgroundColor="DarkSlateGray"
-                    Text="Añadir al Carrito"
-                    TextColor="Orange" 
                     Command="{Binding AñadirAlCarrito}"
-                    />
+                    Text="Añadir al Carrito"
+                    TextColor="Orange" />
             </StackLayout>
             <StackLayout VerticalOptions="FillAndExpand">
                 <ScrollView Orientation="Vertical">
@@ -172,7 +171,7 @@
                         AutoSize="TextChanges"
                         Placeholder="Escriba aquí su comentario"
                         PlaceholderColor="Olive"
-                        Text="{Binding Comentario.Comment}"
+                        Text="{Binding Comentario}"
                         VerticalOptions="FillAndExpand">
                         <Editor.Keyboard>
                             <Keyboard x:FactoryMethod="Create">
@@ -191,16 +190,15 @@
                     <Button
                         Grid.Column="0"
                         BackgroundColor="DarkSlateGray"
+                        Command="{Binding VerComentarios}"
                         Text="Ver Comentarios"
-                        TextColor="Orange" 
-                        Command="{Binding VerComentarios}"/>
+                        TextColor="Orange" />
                     <Button
                         Grid.Column="1"
                         BackgroundColor="DarkSlateGray"
-                        Text="Postear Comentario"
-                        TextColor="Orange" 
                         Command="{Binding PostComentario}"
-                        />
+                        Text="Postear Comentario"
+                        TextColor="Orange" />
                 </Grid>
             </StackLayout>
         </StackLayout>

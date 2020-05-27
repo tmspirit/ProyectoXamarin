@@ -67,10 +67,5 @@ namespace ProyectoXamarin.Views
             productos.Add(produ);
             lsvProducto.ItemsSource = productos;
         }
-
-        private void btnAñadirCarrito_Clicked(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

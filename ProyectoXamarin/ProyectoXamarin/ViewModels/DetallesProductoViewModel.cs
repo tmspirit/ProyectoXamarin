@@ -23,8 +23,8 @@ namespace ProyectoXamarin.ViewModels
                 OnPropertyChanged("Producto");
             }
         }
-        private Comentario _Comentario;
-        public Comentario Comentario {
+        private string _Comentario;
+        public string Comentario {
             get { return this._Comentario; }
             set {
                 this._Comentario = value;
@@ -33,7 +33,6 @@ namespace ProyectoXamarin.ViewModels
         }
         public DetallesProductoViewModel() {
             this.repo = new RepositoryMotores();
-            Comentario = new Comentario();
         }
 
         public Command AñadirAlCarrito {
@@ -71,7 +70,7 @@ namespace ProyectoXamarin.ViewModels
                             view.BindingContext = viewmodel;
                             await Application.Current.MainPage.Navigation.PushAsync(view);
                         }
-                        //else await DisplayAlert("Lo sentimos", "No hay comentarios disponibles para ese producto", "Volver");
+                        else await Application.Current.MainPage.DisplayAlert("Lo sentimos", "No hay comentarios disponibles para ese producto", "Volver");
                     }
                     else await Application.Current.MainPage.Navigation.PushAsync(new Login());
                 });
@@ -87,16 +86,16 @@ namespace ProyectoXamarin.ViewModels
                     if (token != "")
                     {
                         int productoId = Producto.Id_motor;
-                        string texto = Comentario.Comment;
+                        string texto = Comentario;
                         int masterIdCommment = 0;
                         if (texto != null)
                         {
                             await repo.SetComentario(productoId, texto, masterIdCommment, token);
                             Comentario comentario = new Comentario();
                             comentario.Comment = string.Empty;
-                            Comentario = comentario; 
+                            Comentario = comentario.Comment; 
                         }
-                        //else await DisplayAlert("Error", "Por favor escriba un comentario para postear", "Cancel");
+                        else await Application.Current.MainPage.DisplayAlert("Error", "Por favor escriba un comentario para postear", "Cancel");
                     }
                     else await Application.Current.MainPage.Navigation.PushAsync(new Login());
                 });

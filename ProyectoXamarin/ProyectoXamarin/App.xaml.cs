@@ -1,6 +1,7 @@
 ﻿using ProyectoXamarin.Services;
 using ProyectoXamarin.Views;
 using System;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
 namespace ProyectoXamarin
@@ -16,13 +17,13 @@ namespace ProyectoXamarin
         {
             InitializeComponent();
 
-            //MainPage = new NavigationPage(new ProductosView());
-            MainPage = new NavigationPage(new Login());
+            MainPage = new NavigationPage(new MainView());
         }
 
         protected override void OnStart()
         {
             Application.Current.Properties["Token"] = String.Empty;
+            Application.Current.Properties["Carrito"] = new ObservableCollection<int>();
         }
 
         protected override void OnSleep()

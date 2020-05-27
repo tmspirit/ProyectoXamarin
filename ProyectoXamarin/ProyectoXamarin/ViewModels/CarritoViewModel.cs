@@ -41,6 +41,12 @@ namespace ProyectoXamarin.ViewModels
 
             this._TareaProductos = 
                 new NotifyTaskCompletion<ObservableCollection<Productos>>(CargarProductos(this._Carrito.Productos));
+            MessagingCenter.Subscribe<CarritoViewModel>
+                (this, "REFRESH", (sender) => {
+                    Carrito carrito = GenerarCarrito();
+                    this.TareaProductos = 
+                    new NotifyTaskCompletion<ObservableCollection<Productos>>(CargarProductos(carrito.Productos));
+                });
         }
 
         public async Task<ObservableCollection<Productos>> CargarProductos(ObservableCollection<int> carrito){

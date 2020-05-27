@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ProyectoXamarin.Views.MainMotoresView"
+             xmlns:pages="clr-namespace:ProyectoXamarin.Views">
+  <MasterDetailPage.Master>
+        <ContentPage Title="Menu"
+                 BackgroundColor="Azure">
+            <StackLayout Orientation="Vertical">
+                <StackLayout BackgroundColor="Chocolate"
+                             HeightRequest="150">
+                    <Image Source="hospital.png"
+                           HeightRequest="150"/>
+                </StackLayout>
+                <ListView x:Name="lsvmenu"
+                          RowHeight="60"
+                          ItemSelected="lsvmenu_ItemSelected"
+                          >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout VerticalOptions="FillAndExpand"
+                                             Orientation="Horizontal"
+                                             Padding="20"
+                                             Spacing="20">
+                                    <Label Text="{Binding Titulo}"
+                                           FontSize="Medium"
+                                           VerticalOptions="Center"
+                                           TextColor="Black"/>
+                                    <Image Source="{Binding Imagen}"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="End"
+                                           />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ContentPage>
+    </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+    <NavigationPage>
+      
+    </NavigationPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

@@ -16,8 +16,9 @@ namespace ProyectoXamarin
         public App()
         {
             InitializeComponent();
+            Application.Current.Properties["Carrito"] = new ObservableCollection<int>();
+            MainPage = new MainMotoresView();
 
-            MainPage = new NavigationPage(new MainView());
         }
 
         protected override void OnStart()

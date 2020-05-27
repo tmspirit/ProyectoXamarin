@@ -90,7 +90,8 @@ namespace ProyectoXamarin.Views
             DetallesProductoViewModel viewmodel = new DetallesProductoViewModel();
             viewmodel.Producto = await GetProductoAsync(motorId);
             view.BindingContext = viewmodel;
-            await Navigation.PushAsync(view);
+            //App.Locator.MainMotoresView.Detail = new NavigationPage((Page)Activator.CreateInstance(typeof()));
+            await Navigation.PushModalAsync(view);
         }
 
         public async Task<Productos> GetProductoAsync(int motorId)

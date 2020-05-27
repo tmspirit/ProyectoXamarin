@@ -49,6 +49,8 @@ namespace ProyectoXamarin.ViewModels
                         carrito = new ObservableCollection<int>();
                     }
                     carrito.Add(Producto.Id_motor);
+                    Application.Current.Properties["Carrito"] = carrito;
+                    MessagingCenter.Send(App.Locator.CarritoViewModel, "REFRESH");
                 });
             }
         }
@@ -68,11 +70,12 @@ namespace ProyectoXamarin.ViewModels
                             viewmodel.ProductoID = productoId;
                             ComentariosView view = new ComentariosView();
                             view.BindingContext = viewmodel;
-                            await Application.Current.MainPage.Navigation.PushAsync(view);
+                            await Application.Current.MainPage.Navigation.PushModalAsync(view);
                         }
                         else await Application.Current.MainPage.DisplayAlert("Lo sentimos", "No hay comentarios disponibles para ese producto", "Volver");
                     }
-                    else await Application.Current.MainPage.Navigation.PushAsync(new Login());
+                    else await Application.Current.MainPage.Navigation.PushModalAsync(new Login());
+                    //else App.Locator.MainMotoresView.Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(Login)));
                 });
             }
         }
@@ -97,7 +100,7 @@ namespace ProyectoXamarin.ViewModels
                         }
                         else await Application.Current.MainPage.DisplayAlert("Error", "Por favor escriba un comentario para postear", "Cancel");
                     }
-                    else await Application.Current.MainPage.Navigation.PushAsync(new Login());
+                    else await Application.Current.MainPage.Navigation.PushModalAsync(new Login());
                 });
             }
         }

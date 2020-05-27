@@ -52,6 +52,9 @@ namespace ProyectoXamarin.Views
                 Application.Current.Properties["Token"] = token;
                 //Redirijo a Productos
                 //Navigation.PushAsync(new ProductosView());
+                //NO TE ASUSTES ANTHONY ESQUE NECESITO INICIALIZAR EL CARRITO EN ALGUN LAO
+                //Y ESTE ME PARECIA EL SITIO MAS ADECUADO
+                Application.Current.Properties["Carrito"] = null;
                 await Navigation.PushAsync(new ProductosView());
             }
             else

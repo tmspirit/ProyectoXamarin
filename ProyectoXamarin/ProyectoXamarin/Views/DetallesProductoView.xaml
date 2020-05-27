@@ -25,7 +25,7 @@
             <StackLayout Orientation="Vertical">
                 <ListView
                     x:Name="lsvProducto"
-                    ItemsSource="{Binding productos}"
+                    ItemsSource="{Binding Producto}"
                     RowHeight="800">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -161,7 +161,9 @@
                     x:Name="btnAñadirCarrito"
                     BackgroundColor="DarkSlateGray"
                     Text="Añadir al Carrito"
-                    TextColor="Orange" />
+                    TextColor="Orange" 
+                    Command="{Binding AñadirAlCarrito}"
+                    />
             </StackLayout>
             <StackLayout VerticalOptions="FillAndExpand">
                 <ScrollView Orientation="Vertical">
@@ -170,6 +172,7 @@
                         AutoSize="TextChanges"
                         Placeholder="Escriba aquí su comentario"
                         PlaceholderColor="Olive"
+                        Text="{Binding Comentario.Comment}"
                         VerticalOptions="FillAndExpand">
                         <Editor.Keyboard>
                             <Keyboard x:FactoryMethod="Create">
@@ -186,17 +189,18 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Button
-                        x:Name="btnVerComentarios"
                         Grid.Column="0"
                         BackgroundColor="DarkSlateGray"
                         Text="Ver Comentarios"
-                        TextColor="Orange" />
+                        TextColor="Orange" 
+                        Command="{Binding VerComentarios}"/>
                     <Button
-                        x:Name="btnPostComentario"
                         Grid.Column="1"
                         BackgroundColor="DarkSlateGray"
                         Text="Postear Comentario"
-                        TextColor="Orange" />
+                        TextColor="Orange" 
+                        Command="{Binding PostComentario}"
+                        />
                 </Grid>
             </StackLayout>
         </StackLayout>

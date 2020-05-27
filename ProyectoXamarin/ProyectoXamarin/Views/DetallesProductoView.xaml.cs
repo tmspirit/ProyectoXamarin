@@ -20,8 +20,6 @@ namespace ProyectoXamarin.Views
             InitializeComponent();
             this.repo = new RepositoryMotores();
             Task.Run(() => GetProductoAsync(motorId));
-            btnVerComentarios.Clicked += BtnVerComentarios_Clicked;
-            btnPostComentario.Clicked += BtnPostComentario_Clicked;
         }
 
         private async void BtnPostComentario_Clicked(object sender, EventArgs e)
@@ -68,6 +66,11 @@ namespace ProyectoXamarin.Views
             Productos produ = await repo.GetProducto(motorId);
             productos.Add(produ);
             lsvProducto.ItemsSource = productos;
+        }
+
+        private void btnAñadirCarrito_Clicked(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using ProyectoXamarin.ViewModels;
+﻿using ProyectoXamarin.Models;
+using ProyectoXamarin.Repositories;
+using ProyectoXamarin.ViewModels;
 using Syncfusion.SfCarousel.XForms;
 using System;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,11 +12,12 @@ namespace ProyectoXamarin.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProductosView : ContentPage
     {
+        RepositoryMotores repo;
         public ProductosView()
         {
             InitializeComponent();
             CarouselViewModel carouselViewModel = App.Locator.CarouselViewModel;
-            
+            this.repo = new RepositoryMotores();
             SfCarousel carousel = new SfCarousel()
             {
                 HeightRequest = 600,
@@ -83,12 +86,17 @@ namespace ProyectoXamarin.Views
             StackLayout stack = (StackLayout)button.Parent;
             Label idLabel = (Label)stack.Children[0];
             int motorId = int.Parse(idLabel.Text);
-
-            DetallesProductoViewModel viewModel = App.Locator.DetallesProductoViewModel;
-            viewModel.MotorID = motorId;
-            DetallesProductoView view = new DetallesProductoView();
-            view.BindingContext = viewModel;
+            DetallesProductoView view = new DetallesProductoView(motorId);
+            DetallesProductoViewModel viewmodel = new DetallesProductoViewModel();
+            viewmodel.Producto = await GetProductoAsync(motorId);
+            view.BindingContext = viewmodel;
             await Navigation.PushAsync(view);
+        }
+
+        public async Task<Productos> GetProductoAsync(int motorId)
+        {
+            Productos produ = await repo.GetProducto(motorId);
+            return produ;
         }
     }
 }

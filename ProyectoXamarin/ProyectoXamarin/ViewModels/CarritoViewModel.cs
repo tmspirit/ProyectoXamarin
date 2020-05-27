@@ -55,10 +55,7 @@ namespace ProyectoXamarin.ViewModels
         private Carrito GenerarCarrito()
         {
             Carrito carrito = new Carrito();
-            carrito.Productos.Add(1);
-            carrito.Productos.Add(2);
-            carrito.Productos.Add(3);
-            carrito.Productos.Add(4);
+            carrito.Productos = (ObservableCollection<int>)Application.Current.Properties["Carrito"];
             return carrito;
         }
     }

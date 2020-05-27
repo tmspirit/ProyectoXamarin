@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ProyectoXamarin.Views.CreateUsuario">
+    
+    <ContentPage.Content>
+        <StackLayout Padding="25" >
+            <Label Text="Nuevo Usuario" TextColor="#E8A31A" FontSize="30" HeightRequest="80"
+                   HorizontalOptions="Center"/>
+
+
+            <StackLayout  >
+                <Entry  x:Name="entryNombre" WidthRequest="150"
+                        Placeholder="Nombre" 
+                        HorizontalOptions="Center" />
+            </StackLayout>
+            <StackLayout>
+                <Entry  x:Name="entryContacto"  WidthRequest="150"
+                        Placeholder="Contacto"
+                        HorizontalOptions="Center" />
+            </StackLayout>
+            <StackLayout >
+                <Entry  x:Name="entryCiudad" WidthRequest="150"
+                           Placeholder="Ciudad"
+                           HorizontalOptions="Center" />
+            </StackLayout>
+            <StackLayout >
+                <Entry  x:Name="entryTelefono" WidthRequest="150"
+                           Placeholder="Telefono"
+                           HorizontalOptions="Center" />
+            </StackLayout>
+            <StackLayout >
+                <Entry  x:Name="entryPass" WidthRequest="150"
+                           Placeholder="Contraseña" IsPassword="True"
+                           HorizontalOptions="Center" />
+            </StackLayout>
+            <StackLayout HeightRequest="150" VerticalOptions="EndAndExpand">
+                <Button x:Name="bntCreate" 
+                            Text="Crear Usuario" 
+                            HorizontalOptions="Center" HeightRequest="35" CornerRadius="20"
+                            TextColor="White"
+                            BackgroundColor="#B6B6B6"/>
+
+                <Button x:Name="bntBack" 
+                        Text="Volver" 
+                        HorizontalOptions="Center" HeightRequest="35" CornerRadius="20"
+                        TextColor="White"
+                        BackgroundColor="#E8A31A"/>
+            </StackLayout>
+            
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

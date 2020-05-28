@@ -14,7 +14,7 @@ namespace ProyectoXamarin.ViewModels
         public ComentariosViewModel(RepositoryMotores repo)
         {
             this.repo = repo;
-            Task.Run(() => GetComentariosAsync());
+            Task.Run(async () => await GetComentariosAsync());
         }
 
         private int _productoID;
@@ -31,24 +31,21 @@ namespace ProyectoXamarin.ViewModels
             set { _comentarios = value; OnPropertyChanged("Comentarios"); }
         }
 
-        public async Task GetComentariosAsync()
+        public async Task<ObservableCollection<Comentario>> GetComentariosAsync()
         {
             string token = Application.Current.Properties["Token"].ToString();
             if (token != "")
             {
-                List<Comentario> comentarios = new List<Comentario>();
-                do
+                List<Comentario> comen = await repo.GetComentarios(ProductoID);
+                foreach (Comentario c in comen)
                 {
-                    comentarios = await repo.GetComentarios(ProductoID);
-                    foreach (Comentario c in comentarios)
-                    {
-                        Clientes cliente = await repo.FindCliente(c.IdCliente, token);
-                        c.Clientes = cliente;
-                    }
-                } while (comentarios.Count <= 0);
-                
-                Comentarios = new ObservableCollection<Comentario>(comentarios);
+                    Clientes cliente = await repo.FindCliente(c.IdCliente, token);
+                    c.Clientes = cliente;
+                }
+                ObservableCollection<Comentario> comentarios = new ObservableCollection<Comentario>(comen);
+                return comentarios;
             }
+            else return null;
         }
     }
 }

@@ -19,12 +19,14 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <carousel:SfCarousel
-            x:Name="carousel"
-            HeightRequest="400"
-            ItemTemplate="{StaticResource itemTemplate}"
-            ItemsSource="{Binding ImageCollection}"
-            SelectedIndex="2"
-            WidthRequest="800" />
+        <StackLayout>
+            <carousel:SfCarousel
+                x:Name="carousel"
+                HeightRequest="400"
+                ItemTemplate="{StaticResource itemTemplate}"
+                ItemsSource="{Binding ImageCollection}"
+                SelectedIndex="2"
+                WidthRequest="800" />
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

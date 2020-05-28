@@ -45,6 +45,7 @@ namespace ProyectoXamarin.Views
             MasterPageItem itemselected = e.SelectedItem as MasterPageItem;
             Type page = itemselected.Pagina;
             Detail = new NavigationPage((Page)Activator.CreateInstance(page));
+            IsPresented = false;
         }
     }
 }

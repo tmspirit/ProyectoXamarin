@@ -42,8 +42,8 @@ namespace ProyectoXamarin.Views
             //        EMAIL: dionisio@dionisio.6
             //        PASSWORD: erdioniguay / o si no dionisio
 
-            //String token = await repo.GetToken(entryUsuario.Text, entryPass.Text);
-            String token = await repo.GetToken("user", "user");
+            String token = await repo.GetToken(entryUsuario.Text, entryPass.Text);
+            //String token = await repo.GetToken("user", "user");
             //String token = await repo.GetToken("dionisio@dionisio.6", "erdioniguay");
             //Usuario/Pass OK
             if (token != null)

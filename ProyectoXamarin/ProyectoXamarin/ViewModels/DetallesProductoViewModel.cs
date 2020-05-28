@@ -2,10 +2,7 @@
 using ProyectoXamarin.Models;
 using ProyectoXamarin.Repositories;
 using ProyectoXamarin.Views;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -14,8 +11,15 @@ namespace ProyectoXamarin.ViewModels
     public class DetallesProductoViewModel : ViewModelBase
     {
         RepositoryMotores repo;
+        public DetallesProductoViewModel()
+        {
+            this.repo = new RepositoryMotores();
+            Task.Run(async () => await GetProductoAsync());
+        }
+
         private Productos _Producto;
-        public Productos Producto {
+        public Productos Producto
+        {
             get { return this._Producto; }
             set
             {
@@ -23,17 +27,37 @@ namespace ProyectoXamarin.ViewModels
                 OnPropertyChanged("Producto");
             }
         }
+
+        private int _motorId;
+        public int MotorID
+        {
+            get { return _motorId; }
+            set { _motorId = value; OnPropertyChanged("MotorID"); }
+        }
+
+        private ObservableCollection<Productos> _productos;
+        public ObservableCollection<Productos> Productos
+        {
+            get { return _productos; }
+            set { _productos = value; OnPropertyChanged("Productos"); }
+        }
+
+        public async Task<ObservableCollection<Productos>> GetProductoAsync()
+        {
+            ObservableCollection<Productos> productos = new ObservableCollection<Productos>();
+            Productos produ = await repo.GetProducto(MotorID);
+            productos.Add(produ);
+            return productos;
+        }
+
+       
         private string _Comentario;
-        public string Comentario {
+        public string Comentario
+        {
             get { return this._Comentario; }
-            set {
-                this._Comentario = value;
-                OnPropertyChanged("Comentario");
-            }
+            set { this._Comentario = value; OnPropertyChanged("Comentario"); }
         }
-        public DetallesProductoViewModel() {
-            this.repo = new RepositoryMotores();
-        }
+        
 
         public Command AñadirAlCarrito {
             get {
@@ -104,7 +128,5 @@ namespace ProyectoXamarin.ViewModels
                 });
             }
         }
-
-        
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ProyectoXamarin.Code;
+using ProyectoXamarin.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,11 @@ namespace ProyectoXamarin.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainMotoresView : MasterDetailPage
     {
+        RepositoryMotores repo = new RepositoryMotores();
         public MainMotoresView()
         {
             InitializeComponent();
+
             List<MasterPageItem> menu = new List<MasterPageItem>();
             //Motores
             MasterPageItem motoresmenu =
@@ -37,6 +40,21 @@ namespace ProyectoXamarin.Views
             carrito.Pagina = typeof(CarritoView);
             menu.Add(carrito);
             this.lsvmenu.ItemsSource = menu;
+
+            //LogOut
+
+            if (Application.Current.Properties.ContainsKey("Token") )
+            {
+                if (Application.Current.Properties["Token"].ToString() != String.Empty)
+                {
+                    //Application.Current.Properties.Remove("Name");
+                    MasterPageItem logout = new MasterPageItem();
+                    logout.Imagen = "";
+                    logout.Titulo = "Cerrar sesion";
+                    menu.Add(logout);
+                    this.lsvmenu.ItemsSource = menu;
+                }             
+            }
             Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(ProductosView)));
         }
 
@@ -44,8 +62,22 @@ namespace ProyectoXamarin.Views
         {
             MasterPageItem itemselected = e.SelectedItem as MasterPageItem;
             Type page = itemselected.Pagina;
-            Detail = new NavigationPage((Page)Activator.CreateInstance(page));
+            String tit = itemselected.Titulo;
+            if(tit== "Cerrar sesion")
+            {
+                LogOut();
+            }
+            else
+            {
+                Detail = new NavigationPage((Page)Activator.CreateInstance(page));
+            }
+            
             IsPresented = false;
+        }
+        public async void LogOut() {
+            Application.Current.Properties.Remove("Token");
+            Application.Current.MainPage = new MainMotoresView();
+            await Application.Current.MainPage.DisplayAlert("Sesion Finalizada", "Hasta pronto", "OK");          
         }
     }
 }

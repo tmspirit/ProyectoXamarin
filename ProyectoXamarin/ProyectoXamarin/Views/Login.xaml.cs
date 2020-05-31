@@ -65,11 +65,12 @@ namespace ProyectoXamarin.Views
                     //ME PARECE MAS PRACTICO ESTO PARA EVITAR SECUENCIAS INFINITAS DE MODALES
                     await Application.Current.MainPage.DisplayAlert("ATENCION", "Ha iniciado sesion", "Volver");
                 }
-               
+
                 //Redirijo a Productos
                 //Navigation.PushAsync(new ProductosView());
 
                 //await Navigation.PushModalAsync(new ProductosView());
+                Application.Current.MainPage = new MainMotoresView();
             }
             else
             {

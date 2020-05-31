@@ -50,9 +50,26 @@ namespace ProyectoXamarin.Views
             {
                 //Guardo token
                 Application.Current.Properties["Token"] = token;
+
+
+                //SIRVE PARA COMPROBAR SI LA PAGINA SE ESTA EJECUTANDO COMO MODAL
+                //EN CASO DE QUE SEA MODAL CIERRO EL MODAL PARA QUE VUELVA A DETALLES DEL PRODUCTO
+                //SIN QUE TENGAS QUE PASAR POR PRODUCTOS OTRA VEZ
+                IReadOnlyList<Page> page = Navigation.NavigationStack;
+                bool res = page.Contains<Page>(this);
+                if (res == false) {
+                    await Navigation.PopModalAsync();
+                }
+                else
+                {
+                    //ME PARECE MAS PRACTICO ESTO PARA EVITAR SECUENCIAS INFINITAS DE MODALES
+                    await Application.Current.MainPage.DisplayAlert("ATENCION", "Ha iniciado sesion", "Volver");
+                }
+               
                 //Redirijo a Productos
                 //Navigation.PushAsync(new ProductosView());
-                await Navigation.PushModalAsync(new ProductosView());
+
+                //await Navigation.PushModalAsync(new ProductosView());
             }
             else
             {

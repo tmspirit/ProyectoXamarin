@@ -35,7 +35,8 @@ namespace ProyectoXamarin.Views
         }
         public async void LogOut()
         {
-            Application.Current.Properties.Remove("Token");
+            Application.Current.Properties["Token"] = String.Empty;
+            //Application.Current.Properties.Remove("Token");
             Application.Current.MainPage = new MainMotoresView();
             await Application.Current.MainPage.DisplayAlert("Sesion Finalizada", "Hasta pronto", "OK");
         }

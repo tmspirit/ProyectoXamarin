@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using ProyectoXamarin.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -279,10 +280,10 @@ namespace ProyectoXamarin.Repositories
             }
         }
 
-        public async Task<List<Pedidos>> VerMisPedidos(string token)
+        public async Task<ObservableCollection<Pedidos>> VerMisPedidos(string token)
         {
             String request = "/api/Clientes/VerMisPedidos";
-            List<Pedidos> pedidos = await this.CallApi<List<Pedidos>>(request, token);
+            ObservableCollection<Pedidos> pedidos = await this.CallApi<ObservableCollection<Pedidos>>(request, token);
             return pedidos;
         }
 

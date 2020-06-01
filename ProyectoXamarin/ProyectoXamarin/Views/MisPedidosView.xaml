@@ -1,25 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="ProyectoXamarin.Views.CarritoView"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:custom="clr-namespace:ProyectoXamarin.CustomControls"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewmodels="clr-namespace:ProyectoXamarin.ViewModels"
-    Title="MiCarrito"
-    mc:Ignorable="d">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:ProyectoXamarin.CustomControls"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewmodels="clr-namespace:ProyectoXamarin.ViewModels"
+             mc:Ignorable="d"
+             x:Class="ProyectoXamarin.Views.MisPedidosView">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout.BindingContext>
-                <viewmodels:CarritoViewModel />
+                <viewmodels:MisPedidosViewModel />
             </StackLayout.BindingContext>
             <Label
                 FontSize="20"
                 HorizontalOptions="CenterAndExpand"
                 Text="Carrito"
                 VerticalOptions="Start" />
-            <ListView ItemsSource="{Binding TareaProductos.Result}" RowHeight="80">
+            <ListView ItemsSource="{Binding Pedidos.Result}" RowHeight="80">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <custom:CustomViewCellControl SelectedItemBackgroundColor="LightGray">
@@ -27,13 +25,19 @@
                                 <Label
                                     FontAttributes="Bold"
                                     FontSize="20"
-                                    Text="{Binding Nombre}"
+                                    Text="{Binding IdPedido}"
                                     TextColor="OrangeRed"
-                                    VerticalOptions="Center" />
+                                    HorizontalOptions="Start" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="20"
+                                    Text="{Binding Fechallegada}"
+                                    TextColor="OrangeRed"
+                                    HorizontalOptions="Center" />
                                 <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="End">
                                     <Label
                                         FontSize="20"
-                                        Text="{Binding Precio}"
+                                        Text="{Binding Preciopedido}"
                                         TextColor="Black" />
                                 </StackLayout>
                             </StackLayout>

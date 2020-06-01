@@ -27,7 +27,7 @@ namespace ProyectoXamarin.Views
             {
                 LogOut();
             }
-            else if(tit == "Login" || tit == "Carrito" || tit == "Productos")
+            else if(tit == "Login" || tit == "Carrito" || tit == "Productos" || tit == "Mis Pedidos")
             {
                 Detail = new NavigationPage((Page)Activator.CreateInstance(page));
             }

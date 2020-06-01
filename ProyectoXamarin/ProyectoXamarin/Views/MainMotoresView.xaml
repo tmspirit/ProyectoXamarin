@@ -34,9 +34,9 @@
                                         TextColor="Black"
                                         VerticalOptions="Center" />
                                     <Image
-                                        HorizontalOptions="Start"
                                         Source="{Binding Imagen}"
-                                        VerticalOptions="End" />
+                                        HorizontalOptions="EndAndExpand"
+                                        VerticalOptions="Start"/>
                                 </StackLayout>
                             </custom:CustomViewCellControl>
                         </DataTemplate>

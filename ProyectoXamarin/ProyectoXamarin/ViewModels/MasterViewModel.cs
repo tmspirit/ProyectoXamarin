@@ -22,23 +22,25 @@ namespace ProyectoXamarin.ViewModels
 
             //Motores
             MasterPageItem motoresmenu = new MasterPageItem();
-            motoresmenu.Imagen = "hospital.png";
+            motoresmenu.Imagen = "productos.png";
             motoresmenu.Titulo = "Productos";
             motoresmenu.Pagina = typeof(ProductosView);
             MasterItems.Add(motoresmenu);
 
             //Carrito
             MasterPageItem carrito = new MasterPageItem();
-            carrito.Imagen = "";
+            carrito.Imagen = "cart.png";
             carrito.Titulo = "Carrito";
             carrito.Pagina = typeof(CarritoView);
             MasterItems.Add(carrito);
+
+            
 
             //Login
             if (!Application.Current.Properties.ContainsKey("Token"))
             {
                 MasterPageItem login = new MasterPageItem();
-                login.Imagen = "";
+                login.Imagen = "login.png";
                 login.Titulo = "Login";
                 login.Pagina = typeof(Login);
                 MasterItems.Add(login);
@@ -49,7 +51,7 @@ namespace ProyectoXamarin.ViewModels
                 Task.Run(async () => {
                     Clientes cliente = await miCliente();
                     MasterPageItem perfil = new MasterPageItem();
-                    perfil.Imagen = "";
+                    perfil.Imagen = "perfil.png";
                     perfil.Titulo = cliente.Nombre;
                     MasterItems.Add(perfil);
                 });
@@ -62,14 +64,20 @@ namespace ProyectoXamarin.ViewModels
                 if (Application.Current.Properties["Token"].ToString() != String.Empty)
                 {
                     MasterPageItem logout = new MasterPageItem();
-                    logout.Imagen = "";
+                    logout.Imagen = "logout.png";
                     logout.Titulo = "Cerrar sesion";
                     MasterItems.Add(logout);
+                    //MisPedidos
+                    MasterPageItem mispedidos = new MasterPageItem();
+                    mispedidos.Imagen = "delivery.png";
+                    mispedidos.Titulo = "Mis Pedidos";
+                    mispedidos.Pagina = typeof(MisPedidosView);
+                    MasterItems.Add(mispedidos);
                 }
                 else
                 {
                     MasterPageItem login = new MasterPageItem();
-                    login.Imagen = "";
+                    login.Imagen = "login.png";
                     login.Titulo = "Login";
                     login.Pagina = typeof(Login);
                     MasterItems.Add(login);

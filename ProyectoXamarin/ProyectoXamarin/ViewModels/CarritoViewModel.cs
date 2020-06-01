@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Runtime.CompilerServices;
 using ProyectoXamarin.Helpers;
+using ProyectoXamarin.Views;
 
 namespace ProyectoXamarin.ViewModels
 {
@@ -45,6 +46,28 @@ namespace ProyectoXamarin.ViewModels
                     this.TareaProductos = 
                     new NotifyTaskCompletion<ObservableCollection<Productos>>(CargarProductos(carrito.Productos));
                 });
+        }
+
+        public Command RealizarPedido
+        {
+            get
+            {
+                return new Command(async ()=> {
+                    String token = Application.Current.Properties["Token"].ToString();
+                    if (token != String.Empty)
+                    {
+                        Carrito carrito = new Carrito();
+                        carrito.precio = 0;
+                        carrito.Productos = this.Carrito.Productos;
+                        await this.repo.RegistrarCompra(carrito, token);
+                        await Application.Current.MainPage.DisplayAlert("Producto añadido", "Producto añadido al carrito", "OK");
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.Navigation.PushModalAsync(new Login());
+                    }     
+                });
+            }
         }
 
         public async Task<ObservableCollection<Productos>> CargarProductos(ObservableCollection<int> carrito){

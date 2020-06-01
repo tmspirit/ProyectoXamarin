@@ -121,6 +121,7 @@ namespace ProyectoXamarin.Views
             //    }
             //}
 
+
             Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(ProductosView)));
         }
 

@@ -48,6 +48,7 @@ namespace ProyectoXamarin.ViewModels
             {
                 if (Application.Current.Properties["Token"].ToString() != String.Empty)
                 {
+
                     tok = Application.Current.Properties["Token"].ToString();
                     NotifyTaskCompletion<Clientes> taskcli = new NotifyTaskCompletion<Clientes>(this.repo.GetPerfil(tok));
                     this.Cliente = taskcli.Result;

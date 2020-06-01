@@ -15,7 +15,7 @@
             <Label
                 FontSize="20"
                 HorizontalOptions="CenterAndExpand"
-                Text="Carrito"
+                Text="Mis Pedidos : "
                 VerticalOptions="Start" />
             <ListView ItemsSource="{Binding Pedidos.Result}" RowHeight="80">
                 <ListView.ItemTemplate>
@@ -45,7 +45,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Realizar Pedido" Command="{Binding RealizarPedido}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

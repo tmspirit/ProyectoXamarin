@@ -27,12 +27,7 @@ namespace ProyectoXamarin.Views
             motoresmenu.Titulo = "Productos";
             motoresmenu.Pagina = typeof(ProductosView);
             menu.Add(motoresmenu);
-            //Login
-            MasterPageItem login = new MasterPageItem();
-            login.Imagen = "";
-            login.Titulo = "Login";
-            login.Pagina = typeof(Login);
-            menu.Add(login);
+          
             //Carrito
             MasterPageItem carrito = new MasterPageItem();
             carrito.Imagen = "";
@@ -40,6 +35,24 @@ namespace ProyectoXamarin.Views
             carrito.Pagina = typeof(CarritoView);
             menu.Add(carrito);
             this.lsvmenu.ItemsSource = menu;
+
+            //Login
+            if (!Application.Current.Properties.ContainsKey("Token"))
+            {
+                MasterPageItem login = new MasterPageItem();
+                login.Imagen = "";
+                login.Titulo = "Login";
+                login.Pagina = typeof(Login);
+                menu.Add(login);
+            }
+            else
+            {
+                MasterPageItem login = new MasterPageItem();
+                login.Imagen = "";
+                login.Titulo = "Perfil";
+                login.Pagina = typeof(Login);
+                menu.Add(login);
+            }
 
             //LogOut
 

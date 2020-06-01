@@ -75,6 +75,7 @@ namespace ProyectoXamarin.ViewModels
                     carrito.Add(Producto.Id_motor);
                     Application.Current.Properties["Carrito"] = carrito;
                     MessagingCenter.Send(App.Locator.CarritoViewModel, "REFRESH");
+                    Application.Current.MainPage.DisplayAlert("Producto añadido", "Producto añadido al carrito", "OK");
                 });
             }
         }

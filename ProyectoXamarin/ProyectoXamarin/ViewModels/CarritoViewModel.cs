@@ -26,8 +26,6 @@ namespace ProyectoXamarin.ViewModels
 
         private NotifyTaskCompletion<ObservableCollection<Productos>> _TareaProductos;
 
-        //private ObservableCollection<Productos> _Productos;
-
         public NotifyTaskCompletion<ObservableCollection<Productos>> TareaProductos {
             get { return this._TareaProductos; }
             set { 

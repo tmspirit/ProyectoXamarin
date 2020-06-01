@@ -1,4 +1,5 @@
 ﻿using ProyectoXamarin.Code;
+using ProyectoXamarin.Models;
 using ProyectoXamarin.Repositories;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,28 @@ namespace ProyectoXamarin.Views
             InitializeComponent();
 
             List<MasterPageItem> menu = new List<MasterPageItem>();
+
+            //Perfil
+            if (Application.Current.Properties.ContainsKey("Token"))
+            {
+                if (Application.Current.Properties["Token"].ToString() != String.Empty)
+                {
+                    String tok = Application.Current.Properties["Token"].ToString();
+                    Clientes cliente = null;
+
+                    Task.Run(async () => {
+                        cliente = await repo.GetPerfil(tok);
+                    });
+                    String nombreCli = cliente.Nombre.ToString();
+
+                    MasterPageItem perfil = new MasterPageItem();
+                    perfil.Imagen = "";
+                    perfil.Titulo = nombreCli;
+                    //login.Pagina = typeof(Login);
+                    menu.Add(perfil);
+                }
+            }
+
             //Motores
             MasterPageItem motoresmenu =
                 new MasterPageItem();
@@ -37,22 +60,31 @@ namespace ProyectoXamarin.Views
             this.lsvmenu.ItemsSource = menu;
 
             //Login
-            if (!Application.Current.Properties.ContainsKey("Token"))
-            {
-                MasterPageItem login = new MasterPageItem();
-                login.Imagen = "";
-                login.Titulo = "Login";
-                login.Pagina = typeof(Login);
-                menu.Add(login);
-            }
-            else
-            {
-                MasterPageItem login = new MasterPageItem();
-                login.Imagen = "";
-                login.Titulo = "Perfil";
-                login.Pagina = typeof(Login);
-                menu.Add(login);
-            }
+            //if (!Application.Current.Properties.ContainsKey("Token"))
+            //{
+            //    MasterPageItem login = new MasterPageItem();
+            //    login.Imagen = "";
+            //    login.Titulo = "Login";
+            //    login.Pagina = typeof(Login);
+            //    menu.Add(login);
+            //}
+            //else
+            //{
+                
+            //    String tok = Application.Current.Properties["Token"].ToString();
+            //    Clientes cliente=null;
+
+            //    Task.Run(async () => {
+            //        cliente = await repo.GetPerfil(tok);
+            //    });
+            //    String nombreCli = cliente.Nombre.ToString();
+                
+            //    MasterPageItem perfil = new MasterPageItem();
+            //    perfil.Imagen = "";
+            //    perfil.Titulo = nombreCli;
+            //    //login.Pagina = typeof(Login);
+            //    menu.Add(perfil);
+            //}
 
             //LogOut
 
@@ -66,8 +98,17 @@ namespace ProyectoXamarin.Views
                     logout.Titulo = "Cerrar sesion";
                     menu.Add(logout);
                     this.lsvmenu.ItemsSource = menu;
-                }             
+                }
+                else
+                {
+                    MasterPageItem login = new MasterPageItem();
+                    login.Imagen = "";
+                    login.Titulo = "Login";
+                    login.Pagina = typeof(Login);
+                    menu.Add(login);
+                }
             }
+                
             Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(ProductosView)));
         }
 
@@ -76,7 +117,7 @@ namespace ProyectoXamarin.Views
             MasterPageItem itemselected = e.SelectedItem as MasterPageItem;
             Type page = itemselected.Pagina;
             String tit = itemselected.Titulo;
-            if(tit== "Cerrar sesion")
+            if(tit!= "Login" && tit != "Carrito" && tit != "Productos")
             {
                 LogOut();
             }

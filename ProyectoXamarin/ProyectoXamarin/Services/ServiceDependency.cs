@@ -23,6 +23,7 @@ namespace ProyectoXamarin.Services
             builder.RegisterType<CarouselViewModel>();
             builder.RegisterType<ComentariosViewModel>();
 
+            builder.RegisterType<MasterViewModel>();
             builder.RegisterType<MainMotoresView>();
             container = builder.Build();
         }
@@ -43,6 +44,10 @@ namespace ProyectoXamarin.Services
         public MainMotoresView MainMotoresView
         {
             get { return this.container.Resolve<MainMotoresView>(); }
+        }
+        public MasterViewModel MasterViewModel
+        {
+            get { return this.container.Resolve<MasterViewModel>(); }
         }
     }
 }

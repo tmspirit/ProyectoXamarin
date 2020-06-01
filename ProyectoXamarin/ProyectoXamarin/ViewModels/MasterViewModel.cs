@@ -63,16 +63,16 @@ namespace ProyectoXamarin.ViewModels
             {
                 if (Application.Current.Properties["Token"].ToString() != String.Empty)
                 {
-                    MasterPageItem logout = new MasterPageItem();
-                    logout.Imagen = "logout.png";
-                    logout.Titulo = "Cerrar sesion";
-                    MasterItems.Add(logout);
                     //MisPedidos
                     MasterPageItem mispedidos = new MasterPageItem();
                     mispedidos.Imagen = "delivery.png";
                     mispedidos.Titulo = "Mis Pedidos";
                     mispedidos.Pagina = typeof(MisPedidosView);
                     MasterItems.Add(mispedidos);
+                    MasterPageItem logout = new MasterPageItem();
+                    logout.Imagen = "logout.png";
+                    logout.Titulo = "Cerrar sesion";
+                    MasterItems.Add(logout);
                 }
                 else
                 {

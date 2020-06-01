@@ -46,11 +46,14 @@ namespace ProyectoXamarin.ViewModels
             else
             {
                 tok = Application.Current.Properties["Token"].ToString();
-                Task.Run(async () => await miCliente());
-                MasterPageItem perfil = new MasterPageItem();
-                perfil.Imagen = "";
-                perfil.Titulo = this.Cliente.Nombre;
-                MasterItems.Add(perfil);
+                Task.Run(async () => {
+                    Clientes cliente = await miCliente();
+                    MasterPageItem perfil = new MasterPageItem();
+                    perfil.Imagen = "";
+                    perfil.Titulo = cliente.Nombre;
+                    MasterItems.Add(perfil);
+                });
+               
             }
 
             //LogOut

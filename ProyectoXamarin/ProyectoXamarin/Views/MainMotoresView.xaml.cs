@@ -23,11 +23,11 @@ namespace ProyectoXamarin.Views
             MasterPageItem itemselected = e.SelectedItem as MasterPageItem;
             Type page = itemselected.Pagina;
             String tit = itemselected.Titulo;
-            if (tit != "Login" && tit != "Carrito" && tit != "Productos")
+            if (tit =="Cerrar sesion")
             {
                 LogOut();
             }
-            else
+            else if(tit == "Login" || tit == "Carrito" || tit == "Productos")
             {
                 Detail = new NavigationPage((Page)Activator.CreateInstance(page));
             }

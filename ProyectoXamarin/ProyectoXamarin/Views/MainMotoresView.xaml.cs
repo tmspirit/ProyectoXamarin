@@ -31,8 +31,9 @@ namespace ProyectoXamarin.Views
                     Clientes cliente = null;
 
                     Task.Run(async () => {
-                        cliente = await repo.GetPerfil(tok);
+                        cliente = await miCliente(tok) as Clientes;
                     });
+                    
                     String nombreCli = cliente.Nombre.ToString();
 
                     MasterPageItem perfil = new MasterPageItem();
@@ -132,6 +133,13 @@ namespace ProyectoXamarin.Views
             Application.Current.Properties.Remove("Token");
             Application.Current.MainPage = new MainMotoresView();
             await Application.Current.MainPage.DisplayAlert("Sesion Finalizada", "Hasta pronto", "OK");          
+        }
+
+        public async Task<Clientes> miCliente(String token)
+        {
+            Clientes cliente = await repo.GetPerfil(token);
+
+            return cliente;
         }
     }
 }

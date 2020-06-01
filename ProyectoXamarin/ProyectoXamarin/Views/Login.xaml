@@ -34,6 +34,8 @@
                     <StackLayout Grid.Row="1" HeightRequest="45">
                         <Entry  x:Name="entryPass"
                            Placeholder="Contraseña"
+                                
+                           IsPassword="True"
                            HorizontalOptions="FillAndExpand" TextColor="White" />
                     </StackLayout>
                    

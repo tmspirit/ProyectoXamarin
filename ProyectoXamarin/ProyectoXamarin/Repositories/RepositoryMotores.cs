@@ -228,7 +228,7 @@ namespace ProyectoXamarin.Repositories
         }
         public async Task<Clientes> GetPerfil(String token)
         {
-            String request = "/api/Clientes/PerfilCliente";
+            String request = "/api/clientes/perfilcliente";
             Clientes cliente = await this.CallApi<Clientes>(request, token);
             return cliente;
         }

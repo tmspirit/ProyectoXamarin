@@ -12,13 +12,11 @@ namespace ProyectoXamarin.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainMotoresView : MasterDetailPage
     {
-        RepositoryMotores repo = new RepositoryMotores();
         public MainMotoresView()
         {
             InitializeComponent();
             Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(ProductosView)));
         }
-
 
         private void lsvmenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -33,7 +31,6 @@ namespace ProyectoXamarin.Views
             {
                 Detail = new NavigationPage((Page)Activator.CreateInstance(page));
             }
-
             IsPresented = false;
         }
         public async void LogOut()

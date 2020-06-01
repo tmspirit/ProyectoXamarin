@@ -22,26 +22,26 @@ namespace ProyectoXamarin.Views
 
             List<MasterPageItem> menu = new List<MasterPageItem>();
 
-            //Perfil
-            if (Application.Current.Properties.ContainsKey("Token"))
-            {
-                if (Application.Current.Properties["Token"].ToString() != String.Empty)
-                {
-                    String tok = Application.Current.Properties["Token"].ToString();
-                    Clientes cliente = null;
+            ////Perfil
+            //if (Application.Current.Properties.ContainsKey("Token"))
+            //{
+            //    if (Application.Current.Properties["Token"].ToString() != String.Empty)
+            //    {
+            //        String tok = Application.Current.Properties["Token"].ToString();
+            //        Clientes cliente = null;
 
-                    Task.Run(async () => {
-                        cliente = await repo.GetPerfil(tok);
-                    });
-                    String nombreCli = cliente.Nombre.ToString();
+            //        Task.Run(async () => {
+            //            cliente = await repo.GetPerfil(tok);
+            //        });
+            //        String nombreCli = cliente.Nombre.ToString();
 
-                    MasterPageItem perfil = new MasterPageItem();
-                    perfil.Imagen = "";
-                    perfil.Titulo = nombreCli;
-                    //login.Pagina = typeof(Login);
-                    menu.Add(perfil);
-                }
-            }
+            //        MasterPageItem perfil = new MasterPageItem();
+            //        perfil.Imagen = "";
+            //        perfil.Titulo = nombreCli;
+            //        //login.Pagina = typeof(Login);
+            //        menu.Add(perfil);
+            //    }
+            //}
 
             //Motores
             MasterPageItem motoresmenu =
@@ -60,31 +60,32 @@ namespace ProyectoXamarin.Views
             this.lsvmenu.ItemsSource = menu;
 
             //Login
-            //if (!Application.Current.Properties.ContainsKey("Token"))
-            //{
-            //    MasterPageItem login = new MasterPageItem();
-            //    login.Imagen = "";
-            //    login.Titulo = "Login";
-            //    login.Pagina = typeof(Login);
-            //    menu.Add(login);
-            //}
-            //else
-            //{
-                
-            //    String tok = Application.Current.Properties["Token"].ToString();
-            //    Clientes cliente=null;
+            if (!Application.Current.Properties.ContainsKey("Token"))
+            {
+                MasterPageItem login = new MasterPageItem();
+                login.Imagen = "";
+                login.Titulo = "Login";
+                login.Pagina = typeof(Login);
+                menu.Add(login);
+            }
+            else
+            {
 
-            //    Task.Run(async () => {
-            //        cliente = await repo.GetPerfil(tok);
-            //    });
-            //    String nombreCli = cliente.Nombre.ToString();
-                
-            //    MasterPageItem perfil = new MasterPageItem();
-            //    perfil.Imagen = "";
-            //    perfil.Titulo = nombreCli;
-            //    //login.Pagina = typeof(Login);
-            //    menu.Add(perfil);
-            //}
+                String tok = Application.Current.Properties["Token"].ToString();
+                Clientes cliente = null;
+
+                Task.Run(async () =>
+                {
+                    cliente = await repo.GetPerfil(tok);
+                });
+                String nombreCli = cliente.Nombre.ToString();
+
+                MasterPageItem perfil = new MasterPageItem();
+                perfil.Imagen = "";
+                perfil.Titulo = nombreCli;
+                //login.Pagina = typeof(Login);
+                menu.Add(perfil);
+            }
 
             //LogOut
 

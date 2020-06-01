@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:ProyectoXamarin.Converters"
+    xmlns:custom="clr-namespace:ProyectoXamarin.CustomControls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -29,7 +30,7 @@
                     RowHeight="800">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
+                            <custom:CustomViewCellControl SelectedItemBackgroundColor="LightGray">
                                 <Grid Padding="5">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="25" />
@@ -151,7 +152,7 @@
                                         Text="{Binding Stock}"
                                         TextColor="{Binding Stock, Converter={StaticResource converterColor}}" />
                                 </Grid>
-                            </ViewCell>
+                            </custom:CustomViewCellControl>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

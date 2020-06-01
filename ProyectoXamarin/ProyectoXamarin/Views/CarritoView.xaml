@@ -1,41 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:viewmodels="clr-namespace:ProyectoXamarin.ViewModels"
-             x:Class="ProyectoXamarin.Views.CarritoView"
-             Title="MiCarrito">
+<ContentPage
+    x:Class="ProyectoXamarin.Views.CarritoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:custom="clr-namespace:ProyectoXamarin.CustomControls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:ProyectoXamarin.ViewModels"
+    Title="MiCarrito"
+    mc:Ignorable="d">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="Gray">
+        <StackLayout>
             <StackLayout.BindingContext>
-                <viewmodels:CarritoViewModel/>
+                <viewmodels:CarritoViewModel />
             </StackLayout.BindingContext>
-            <Label Text="Vieeeeeeeeeeejiuuuuuu"
-                VerticalOptions="Start"
-                   FontSize="20"
-                HorizontalOptions="CenterAndExpand" />
-            <ListView RowHeight="80" ItemsSource="{Binding TareaProductos.Result}">
+            <Label
+                FontSize="20"
+                HorizontalOptions="CenterAndExpand"
+                Text="Carrito"
+                VerticalOptions="Start" />
+            <ListView ItemsSource="{Binding TareaProductos.Result}" RowHeight="80">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal" >
-                                <Label Text="{Binding Nombre}" 
-                                       VerticalOptions="Center"
-                                       FontSize="20" 
-                                       FontAttributes="Bold"
-                                       TextColor="OrangeRed"
-                                       />
-                                <StackLayout HorizontalOptions="EndAndExpand"
-                                             VerticalOptions="End">
-                                    <Label 
+                        <custom:CustomViewCellControl SelectedItemBackgroundColor="LightGray">
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="20"
+                                    Text="{Binding Nombre}"
+                                    TextColor="OrangeRed"
+                                    VerticalOptions="Center" />
+                                <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="End">
+                                    <Label
                                         FontSize="20"
-                                        TextColor="Black"
-                                        Text="{Binding Precio}"/>
+                                        Text="{Binding Precio}"
+                                        TextColor="Black" />
                                 </StackLayout>
                             </StackLayout>
-                        </ViewCell>
+                        </custom:CustomViewCellControl>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

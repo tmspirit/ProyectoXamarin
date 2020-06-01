@@ -63,7 +63,7 @@ namespace ProyectoXamarin.Views
                 ImageButton imagen = new ImageButton();
                 imagen.SetBinding(ImageButton.SourceProperty, "Image");
                 imagen.Clicked += Imagen_Clicked;
-                imagen.BackgroundColor = Color.Black;
+                imagen.BackgroundColor = Color.Transparent;
 
                 stack.Children.Add(motorId);
                 stack.Children.Add(nombreProducto);

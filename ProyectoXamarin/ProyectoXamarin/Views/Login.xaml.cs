@@ -63,7 +63,7 @@ namespace ProyectoXamarin.Views
                 else
                 {
                     //ME PARECE MAS PRACTICO ESTO PARA EVITAR SECUENCIAS INFINITAS DE MODALES
-                    await Application.Current.MainPage.DisplayAlert("ATENCION", "Ha iniciado sesion", "Volver");
+                    //await Application.Current.MainPage.DisplayAlert("ATENCION", "Ha iniciado sesion", "Volver");
                 }
 
                 //Redirijo a Productos

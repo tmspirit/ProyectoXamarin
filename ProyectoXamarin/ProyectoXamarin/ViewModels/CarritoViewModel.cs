@@ -60,7 +60,9 @@ namespace ProyectoXamarin.ViewModels
                         carrito.precio = 0;
                         carrito.Productos = this.Carrito.Productos;
                         await this.repo.RegistrarCompra(carrito, token);
-                        await Application.Current.MainPage.DisplayAlert("Producto añadido", "Producto añadido al carrito", "OK");
+                        await Application.Current.MainPage.DisplayAlert("Pedidos", "Pedido realizado", "OK");
+                        Application.Current.Properties["Carrito"] = null;
+                        Application.Current.MainPage = new MainMotoresView();
                     }
                     else
                     {

@@ -43,13 +43,14 @@ namespace ProyectoXamarin.Repositories
 
         private async Task<T> CallApi<T>(String request, String token)
         {
+            HttpResponseMessage response = new HttpResponseMessage();
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(this.url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(this.header);
                 client.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
-                HttpResponseMessage response = await client.GetAsync(request);
+                response = await client.GetAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
                     T data = await response.Content.ReadAsAsync<T>();
